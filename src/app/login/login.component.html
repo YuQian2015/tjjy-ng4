@@ -1,0 +1,11 @@
+<p>
+  login works!{{isLogin}}
+</p>
+<div>
+  <input class="ui-input" (change)="handleUsername(username.value)" #username type="text" placeholder="用户名" />
+  <input type="password" (change)="handlePassword(password.value)" #password placeholder="密码" class="ui-input">
+  <input type="password" (change)="handleRepeat(repeat.value)" #repeat placeholder="重复密码" *ngIf="!isLogin" class="ui-input">
+  <a (click)="changeState()">{{isLogin?'注册':'登录'}}</a>
+  <button class="ui-button ui-button-primary" (click)="login(username)" *ngIf="isLogin">登录</button>
+  <button class="ui-button" *ngIf="!isLogin">注册</button>
+</div>
