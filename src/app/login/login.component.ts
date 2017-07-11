@@ -26,6 +26,11 @@ export class LoginComponent implements OnInit {
       alert("13")
     }
   }
+  register(){
+      alert(this.username)
+      alert(this.password)
+      alert(this.repeat)
+  }
   handleUsername(username){
     this.username = username;
   }
