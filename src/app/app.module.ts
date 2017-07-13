@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpModule }    from '@angular/http';
 
 import { AlertModule } from 'ngx-bootstrap';
+
 
 // component
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/main' },
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'user', component: UserInfoComponent },
 ];
 
 @NgModule({
@@ -28,7 +31,8 @@ export const ROUTES: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

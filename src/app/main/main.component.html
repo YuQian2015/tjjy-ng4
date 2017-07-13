@@ -5,15 +5,7 @@
   <div class="well well-sm">
     name:<input class="form-control" [(ngModel)]="hero.name" placeholder="name">
   </div>
-  <div *ngIf="selectedHero">
-    <h2>{{selectedHero.name}} details!</h2>
-    <div class="alert alert-success"><b>id: </b>{{selectedHero.id}}</div>
-    <div class="form-group">
-      <label for="">name:</label>
-      <input class="form-control" [(ngModel)]="selectedHero.name" placeholder="name" />
-    </div>
-  </div>
-
+  <app-user-info [hero]="selectedHero"></app-user-info>
   <h2>My Heroes</h2>
 
   <ul class="heroes">

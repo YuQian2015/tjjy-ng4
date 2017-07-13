@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
+
+import { UserService } from '../service/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[UserService]
 })
 export class LoginComponent implements OnInit {
   isLogin: boolean;
   username: string;
   password: string;
   repeat: string;
-  constructor() {
+  constructor(private userService: UserService) {
     this.isLogin = true;
     this.username = "";
     this.password = "";
@@ -27,9 +31,7 @@ export class LoginComponent implements OnInit {
     }
   }
   register(){
-      alert(this.username)
-      alert(this.password)
-      alert(this.repeat)
+    this.userService.register();
   }
   handleUsername(username){
     this.username = username;
