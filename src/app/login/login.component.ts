@@ -14,28 +14,31 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   repeat: string;
+  email: string;
   constructor(private userService: UserService) {
     this.isLogin = true;
     this.username = "";
     this.password = "";
     this.repeat = "";
+    this.email = "";
   }
 
   login(){
-    if(this.username&&this.password){
-      alert(this.username)
+    if(this.email&&this.password){
+      alert(this.email)
       alert(this.password)
     }
   }
   register(){
-    if(!this.username||!this.password||this.password !== this.repeat){
+    if(!this.email||!this.username||!this.password||this.password !== this.repeat){
       return
     }
+    //提交
     this.userService.register(
       {
         name: this.username,
-        email: '123@qq.com',
-        password: this.password
+        email: this.email,
+        password: this.password,
       }
     ).subscribe(data => {
       if (data) console.log(data);
@@ -49,6 +52,9 @@ export class LoginComponent implements OnInit {
   }
   handleRepeat(repeat){
     this.repeat = repeat;
+  }
+  handleEmail(email){
+    this.email = email;
   }
   changeState(){
     this.isLogin = !this.isLogin;

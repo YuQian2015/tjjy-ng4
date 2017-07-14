@@ -1,9 +1,15 @@
 <div class="loginForm">
   <div class="container-fluid">
     <div class="form-group">
-      <div class="input-group">
+      <div class="input-group"  *ngIf="!isLogin">
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <input class="form-control" type="text" (change)="handleUsername(username.value)" #username placeholder="用户名" />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        <input type="email" class="form-control" (change)="handleEmail(email.value)" #email placeholder="邮箱">
       </div>
     </div>
     <div class="form-group">
