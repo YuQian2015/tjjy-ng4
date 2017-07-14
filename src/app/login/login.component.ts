@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInfoModule }    from '../module/user-info/user-info.module';
 
 
 import { UserService } from '../service/user.service';
@@ -7,37 +8,36 @@ import { UserService } from '../service/user.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[UserService]
+  providers:[UserService],
 })
 export class LoginComponent implements OnInit {
   isLogin: boolean;
   username: string;
   password: string;
   repeat: string;
-  email: string;
+  UserInfo =  new UserInfoModule('', '','');
   constructor(private userService: UserService) {
     this.isLogin = true;
     this.username = "";
     this.password = "";
     this.repeat = "";
-    this.email = "";
   }
 
   login(){
-    if(this.email&&this.password){
-      alert(this.email)
+    if(this.UserInfo.email&&this.password){
+      alert(this.UserInfo.email)
       alert(this.password)
     }
   }
   register(){
-    if(!this.email||!this.username||!this.password||this.password !== this.repeat){
+    if(!this.UserInfo.email||!this.username||!this.password||this.password !== this.repeat){
       return
     }
     //提交
     this.userService.register(
       {
         name: this.username,
-        email: this.email,
+        email: this.UserInfo.email,
         password: this.password,
       }
     ).subscribe(data => {
@@ -52,9 +52,6 @@ export class LoginComponent implements OnInit {
   }
   handleRepeat(repeat){
     this.repeat = repeat;
-  }
-  handleEmail(email){
-    this.email = email;
   }
   changeState(){
     this.isLogin = !this.isLogin;
