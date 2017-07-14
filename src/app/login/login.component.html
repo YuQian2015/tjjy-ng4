@@ -18,9 +18,8 @@
         <input class="form-control" type="password" (change)="handleRepeat(repeat.value)" #repeat placeholder="重复密码">
       </div>
     </div>
-    <a class="btn btn-link" (click)="changeState()">{{isLogin?'立即注册':'返回登录'}}</a>
-    <button class="btn" (click)="login()" *ngIf="isLogin">登录</button>
-    <button class="btn btn-primary" (click)="register()" *ngIf="!isLogin">注册</button>
+    <a class="btn btn-link pull-right" (click)="changeState()">{{isLogin?'立即注册':'返回登录'}}</a>
+    <button class="btn btn-block btn-danger" (click)="login()" *ngIf="isLogin">登录</button>
+    <button class="btn btn-block btn-primary" (click)="register()" *ngIf="!isLogin">注册</button>
   </div>
-  <alert type="success">hello</alert>
 </div>

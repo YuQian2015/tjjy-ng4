@@ -22,16 +22,24 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    if(!this.isLogin&&this.username&&this.password&&this.password === this.repeat){
+    if(this.username&&this.password){
       alert(this.username)
       alert(this.password)
     }
-    if(this.isLogin&&this.username&&this.password){
-      alert("13")
-    }
   }
   register(){
-    this.userService.register();
+    if(!this.username||!this.password||this.password !== this.repeat){
+      return
+    }
+    this.userService.register(
+      {
+        name: this.username,
+        email: '123@qq.com',
+        password: this.password
+      }
+    ).subscribe(data => {
+      if (data) console.log(data);
+    });
   }
   handleUsername(username){
     this.username = username;

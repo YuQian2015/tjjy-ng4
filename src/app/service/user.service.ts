@@ -77,39 +77,18 @@ export class UserService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
-  register() {
-    let bodyString = JSON.stringify({ name: '123456', email: '123@qq.com', password: '123456' }); // Stringify payload
+  register(requestBody): Observable<Object>{
+    let bodyString = JSON.stringify(requestBody); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
 
-
-
-
-
-    this.http.get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`) // ...using get request
-      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
-      //...errors if any
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-      .subscribe(data => {
-        if (data) console.log(data); // (6)
-      });
-
-    this.http.post(this.commentsUrl, bodyString, headers)
-
-
+    return this.http.post(this.commentsUrl, bodyString, options)
       // we use the map operator to take the response data, convert it to JSON,
       // and then reutrn it to any subscribers that are waiting for the data to resolve.
       .map((res: Response) => res.json()) // 调用 Response 对象的 json() 方法，把响应体转成 JSON 对象
-      .subscribe(data => {
-        if (data) console.log(data);
-      });
-    // .then(res => res.json().data as Hero)
-    // .catch(this.handleError);
-
-    // var data = {name:"John"}
-    // var xmlHttp = new XMLHttpRequest();
-    // xmlHttp.open("POST", this.commentsUrl, false); // false for synchronous request
-    // xmlHttp.setRequestHeader("Content-Type", "application/json");
-    // xmlHttp.send(data);
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+      // .subscribe(data => {
+      //   if (data) console.log(data);
+      // });
   }
 }
