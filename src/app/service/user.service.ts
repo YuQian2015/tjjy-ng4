@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http'; // (1)
+import { Http, Response, Headers, RequestOptions } from '@angular/http'; // We are importing the required libraries for our service to behave as expected
 import 'rxjs/add/operator/map';  // We need to import the map from rxjs in order to use the map operator.
-
+import 'rxjs/add/operator/catch';// The map and catch observable operators which will help us manipulate data and handle errors respectively has also been imported.
+import { Observable } from 'rxjs/Rx';
 
 // 1.x的 $http 与 Http ： $http 返回 Promises， Http 返回 Observable
 // 最大的区别是 ： Observable 可以多次发出数据，这就是为什么 Observable 可以被 subscribed 和 unsubscribed
@@ -15,24 +16,100 @@ import 'rxjs/add/operator/map';  // We need to import the map from rxjs in order
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) { }
-  register(){
-      // this.http.get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`) // (4)
-      //     .map(res => res.json()) // (5)
-      //     .subscribe(data => {
-      //        if (data) console.log(data); // (6)
-      // });
+  // private instance variable to hold base url
+  private commentsUrl = 'http://localhost:3000/api/listUsers';
+  Comment = {
+    id: Date,
+    author: String,
+    text: String
+  };
 
-      this.http.post('http://localhost:3000/api/listUsers', JSON.stringify({name: '123456',email:'123@qq.com',password:'123456'}))
+  // Resolve HTTP using the constructor
+  constructor(private http: Http) { }
+  // Fetch all existing comments
+  getComments(): Observable<Comment[]> {
+
+    // ...using get request
+    return this.http.get(this.commentsUrl)
+      // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      //...errors if any
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+
+  // Add a new comment
+  addComment(body: Object): Observable<Comment[]> {
+    let bodyString = JSON.stringify(body); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+    return this.http.post(this.commentsUrl, body, options) // ...using post request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  }
+
+
+  // Update a comment
+  updateComment(body: Object): Observable<Comment[]> {
+    let bodyString = JSON.stringify(body); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+    return this.http.put(`${this.commentsUrl}/${body['id']}`, body, options) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  }
+
+  // Delete a comment
+  removeComment(id: string): Observable<Comment[]> {
+    return this.http.delete(`${this.commentsUrl}/${id}`) // ...using put request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  }
+  // Fetch all existing comments
+  request(): Observable<Comment[]> {
+    // ...using get request
+    return this.http.get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`)
+      // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      //...errors if any
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+
+  }
+  register() {
+    let bodyString = JSON.stringify({ name: '123456', email: '123@qq.com', password: '123456' }); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+
+
+
+
+    this.http.get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`) // ...using get request
+      .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
+      //...errors if any
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+      .subscribe(data => {
+        if (data) console.log(data); // (6)
+      });
+
+    this.http.post(this.commentsUrl, bodyString, headers)
 
 
       // we use the map operator to take the response data, convert it to JSON,
       // and then reutrn it to any subscribers that are waiting for the data to resolve.
-          .map((res:Response) => res.json()) // 调用 Response 对象的 json() 方法，把响应体转成 JSON 对象
-          .subscribe(data => {
-             if (data) console.log(data);
+      .map((res: Response) => res.json()) // 调用 Response 对象的 json() 方法，把响应体转成 JSON 对象
+      .subscribe(data => {
+        if (data) console.log(data);
       });
-      // .then(res => res.json().data as Hero)
-      // .catch(this.handleError);
+    // .then(res => res.json().data as Hero)
+    // .catch(this.handleError);
+
+    // var data = {name:"John"}
+    // var xmlHttp = new XMLHttpRequest();
+    // xmlHttp.open("POST", this.commentsUrl, false); // false for synchronous request
+    // xmlHttp.setRequestHeader("Content-Type", "application/json");
+    // xmlHttp.send(data);
   }
 }
