@@ -17,7 +17,7 @@ import { Observable } from 'rxjs/Rx';
 export class UserService {
 
   // private instance variable to hold base url
-  private commentsUrl = 'http://localhost:3000/api/listUsers';
+  private commentsUrl = 'http://localhost:3000/api/register';
   Comment = {
     id: Date,
     author: String,
