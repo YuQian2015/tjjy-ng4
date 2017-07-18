@@ -11,6 +11,7 @@ export class UserInfoModule {
   constructor(
       public name: string,
       public email: string,
-      public password: string
+      public password: string,
+      public repeat: string
     ) {  }
 }

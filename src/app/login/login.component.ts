@@ -12,46 +12,31 @@ import { UserService } from '../service/user.service';
 })
 export class LoginComponent implements OnInit {
   isLogin: boolean;
-  username: string;
-  password: string;
-  repeat: string;
-  UserInfo =  new UserInfoModule('', '','');
+  UserInfo =  new UserInfoModule('', '','','');
   constructor(private userService: UserService) {
     this.isLogin = true;
-    this.username = "";
-    this.password = "";
-    this.repeat = "";
   }
 
   login(){
-    if(this.UserInfo.email&&this.password){
+    if(this.UserInfo.email&&this.UserInfo.password){
       alert(this.UserInfo.email)
-      alert(this.password)
+      alert(this.UserInfo.password)
     }
   }
   register(){
-    if(!this.UserInfo.email||!this.username||!this.password||this.password !== this.repeat){
+    if(!this.UserInfo.email||!this.UserInfo.name||!this.UserInfo.password||this.UserInfo.password !== this.UserInfo.repeat){
       return
     }
     //提交
     this.userService.register(
       {
-        name: this.username,
+        name: this.UserInfo.name,
         email: this.UserInfo.email,
-        password: this.password,
+        password: this.UserInfo.password,
       }
     ).subscribe(data => {
       if (data) console.log(data);
     });
-  }
-  handleUsername(username){
-    this.username = username;
-  }
-  handlePassword(password){
-    this.password = password;
-  }
-  handleRepeat(repeat){
-    this.repeat = repeat;
   }
   changeState(){
     this.isLogin = !this.isLogin;
