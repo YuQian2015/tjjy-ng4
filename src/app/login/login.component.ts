@@ -19,8 +19,15 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(this.UserInfo.email&&this.UserInfo.password){
-      alert(this.UserInfo.email)
-      alert(this.UserInfo.password)
+      this.userService.signIn(
+        {
+          email: this.UserInfo.email,
+          password: this.UserInfo.password,
+        }).subscribe(data => {
+          if (data) {
+            console.log(data.data.result);
+          }
+        });
     }
   }
   register(){
@@ -28,7 +35,7 @@ export class LoginComponent implements OnInit {
       return
     }
     //提交
-    this.userService.register(
+    this.userService.signUp(
       {
         name: this.UserInfo.name,
         email: this.UserInfo.email,

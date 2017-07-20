@@ -11,13 +11,13 @@ import { Observable } from 'rxjs/Rx';
 // Promise:Promises are only called once and will return a single value,Promises are not cancellable
 // 可以通过 引入 'rxjs/add/operator/toPromise' 调用observable的toPromise()来转换成Promises。
 
-
+import { ResponseModule } from '../module/response/response.module';
 
 @Injectable()
 export class UserService {
 
   // private instance variable to hold base url
-  private commentsUrl = 'http://localhost:3000/api/register';
+  private commentsUrl = 'http://localhost:3000/api/user/signup';
   Comment = {
     id: Date,
     author: String,
@@ -67,17 +67,9 @@ export class UserService {
       .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
       .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
-  // Fetch all existing comments
-  request(): Observable<Comment[]> {
-    // ...using get request
-    return this.http.get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`)
-      // ...and calling .json() on the response to return data
-      .map((res: Response) => res.json())
-      //...errors if any
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
-  }
-  register(requestBody): Observable<Object>{
+  // 注册
+  signUp(requestBody): Observable<ResponseModule>{
     let bodyString = JSON.stringify(requestBody); // Stringify payload
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
@@ -87,8 +79,15 @@ export class UserService {
       // and then reutrn it to any subscribers that are waiting for the data to resolve.
       .map((res: Response) => res.json()) // 调用 Response 对象的 json() 方法，把响应体转成 JSON 对象
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-      // .subscribe(data => {
-      //   if (data) console.log(data);
-      // });
+  }
+// 登录
+  signIn(requestBody): Observable<ResponseModule>{
+    let bodyString = JSON.stringify(requestBody);
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:3000/api/user/signin', bodyString, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
 }
