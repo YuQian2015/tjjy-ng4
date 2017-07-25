@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserInfoModule }    from '../module/user-info/user-info.module';
+import { UserInfoModule }    from '../../module/user-info/user-info.module';
 
 
-import { UserService } from '../service/user.service';
-import { FileUploadService } from '../service/file-upload.service';
+import { UserService } from '../../service/user.service';
+import { FileUploadService } from '../../service/file-upload.service';
 
 @Component({
   selector: 'app-login',

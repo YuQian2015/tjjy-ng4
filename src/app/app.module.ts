@@ -9,9 +9,9 @@ import { AlertModule } from 'ngx-bootstrap';
 
 // component
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
-import { UserInfoComponent } from './user-info/user-info.component';
+import { LoginComponent } from './component/login/login.component';
+import { MainComponent } from './component/main/main.component';
+import { UserInfoComponent } from './component/user-info/user-info.component';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/main' },
