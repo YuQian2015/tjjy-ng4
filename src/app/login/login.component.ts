@@ -3,17 +3,18 @@ import { UserInfoModule }    from '../module/user-info/user-info.module';
 
 
 import { UserService } from '../service/user.service';
+import { FileUploadService } from '../service/file-upload.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[UserService],
+  providers:[UserService,FileUploadService],
 })
 export class LoginComponent implements OnInit {
   isLogin: boolean;
   UserInfo =  new UserInfoModule('', '','','');
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private _svc: FileUploadService) {
     this.isLogin = true;
   }
 
@@ -44,6 +45,33 @@ export class LoginComponent implements OnInit {
     ).subscribe(data => {
       if (data) console.log(data);
     });
+  }
+  upload(fieldName: string, fileList: FileList){
+    // handle file changes
+    const formData = new FormData();
+
+    if (!fileList.length) return;
+
+    // append the files to FormData
+    Array
+      .from(Array(fileList.length).keys())
+      .map(x => {
+        formData.append(fieldName, fileList[x], fileList[x].name);
+      });
+
+    // save it
+    this.save(formData);
+  }
+  save(formData: FormData) {
+    // upload data to the server
+    this._svc.upload(formData)
+      .take(1)
+      .delay(1500) // DEV ONLY: delay 1.5s to see the changes
+      .subscribe(x => {
+        console.log(x)
+      }, err => {
+        console.log(err)
+      })
   }
   changeState(){
     this.isLogin = !this.isLogin;

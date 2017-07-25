@@ -33,5 +33,11 @@
       <button class="btn btn-block btn-danger" (click)="login()" *ngIf="isLogin">登录</button>
       <button class="btn btn-block btn-primary" (click)="register()" *ngIf="!isLogin">注册</button>
     </form>
+    <div>
+      <!--UPLOAD-->
+      <input type="file" name="files" accept="image/*" #photo />
+      <input class="btn btn-primary" (click)="upload(photo.name, photo.files)" type="submit" value="提交">
+
+    </div>
   </div>
 </div>
