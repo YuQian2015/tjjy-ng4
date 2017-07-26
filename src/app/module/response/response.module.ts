@@ -15,6 +15,9 @@ export class ResponseModule {
       public data:{
         result:object,
         token?:string,
+        page?:number,
+        pageSize?:number,
+        count?:number
       }
     ) {  }
   }

@@ -6,11 +6,11 @@ export class FileUploadService {
 
   baseUrl = 'http://localhost:3000/api'; // our local Hapi Js API
 
-  constructor(private _http: Http) { }
+  constructor(private http: Http) { }
 
   upload(formData) {
     const url = `${this.baseUrl}/file/upload`;
-    return this._http.post(url, formData)
+    return this.http.post(url, formData)
       .map((res: Response) => res.json())
   }
 }
