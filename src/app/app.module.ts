@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
-import { AlertModule } from 'ngx-bootstrap';
+import { AlertModule,CarouselModule } from 'ngx-bootstrap';
 
 
 // component
@@ -37,7 +37,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
-    AlertModule.forRoot(),
+    AlertModule.forRoot(),CarouselModule.forRoot(),
     HttpModule
   ],
   providers: [],
