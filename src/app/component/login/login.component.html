@@ -33,9 +33,10 @@
       <button class="btn btn-block btn-danger" (click)="login()" *ngIf="isLogin">登录</button>
       <button class="btn btn-block btn-primary" (click)="register()" *ngIf="!isLogin">注册</button>
     </form>
-    <div>
-    <app-file-unpload></app-file-unpload>
+    <div style="position: relative;">
+      <app-file-unpload></app-file-unpload>
 
     </div>
   </div>
 </div>
+<app-froala (froala)="froalaContent($event)"></app-froala>

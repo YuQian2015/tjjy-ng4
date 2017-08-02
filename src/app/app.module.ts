@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
 import { AlertModule,CarouselModule } from 'ngx-bootstrap';
+// Import Angular plugin.
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 // component
@@ -15,6 +17,7 @@ import { UserInfoComponent } from './component/user-info/user-info.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { FileUnploadComponent } from './component/file-unpload/file-unpload.component';
 import { BannerComponent } from './component/banner/banner.component';
+import { FroalaComponent } from './component/froala/froala.component';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/main' },
@@ -31,13 +34,15 @@ export const ROUTES: Routes = [
     UserInfoComponent,
     NavBarComponent,
     FileUnploadComponent,
-    BannerComponent
+    BannerComponent,
+    FroalaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
     AlertModule.forRoot(),CarouselModule.forRoot(),
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     HttpModule
   ],
   providers: [],
