@@ -11,13 +11,24 @@ export class PostService {
 
   constructor(private http: Http) { }
 
-  // 登录
+  // 获取文章
   getPostList(requestBody): Observable<ResponseModule>{
     let bodyString = JSON.stringify(requestBody);
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post('http://localhost:3000/api/post/getPostList', bodyString ,options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+  }
+
+  // 添加文章
+  addPostList(requestBody): Observable<ResponseModule>{
+    let bodyString = JSON.stringify(requestBody);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:3000/api/protect/addPost', bodyString ,options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }

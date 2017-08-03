@@ -39,7 +39,7 @@ export class FroalaComponent implements OnInit {
       events: {
         'froalaEditor.keyup': function (e, editor) {
           that.froala.emit(that.froalaText);
-          console.log(editor.selection.get());
+          // console.log(editor.selection.get());
         }
       }
     }

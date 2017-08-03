@@ -19,7 +19,8 @@
           <li><a routerLink="/hero">hero</a></li>
         </ul>
         <ul class="nav navbar-nav  navbar-right">
-          <li class="active"><a routerLink="/login">login</a></li>
+          <li *ngIf="!isLogin" class="active"><a routerLink="/login">登录</a></li>
+          <li *ngIf="isLogin" class="active"><a routerLink="">退出登录</a></li>
         </ul>
       </div>
       <!--/.nav-collapse -->

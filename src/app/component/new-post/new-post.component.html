@@ -1,45 +1,38 @@
 <div class="container">
-  <form>
-    <div class="form-group">
+  <form  #postForm="ngForm" class=""  method="post">
+    <div class="form-group" [ngClass]="{'has-error':title.invalid && title.dirty}">
       <label for="">标题</label>
-      <input type="text" class="form-control" id="" placeholder="文章标题">
+      <input type="text" required class="form-control" [maxlength]="20" [(ngModel)]="Post.title" #title="ngModel" name="title" id="" placeholder="文章标题">
       <p class="help-block pull-right">0/20</p>
     </div>
-    <div class="form-group">
-      <label for="">作者</label>
-      <input type="text" class="form-control" id="" placeholder="输入作者">
-      <p class="help-block pull-right">0/20</p>
-    </div>
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-error':description.invalid && description.dirty}">
       <label for="">摘要</label>
-      <input type="text" class="form-control" id="" placeholder="简短描述">
-      <p class="help-block pull-right">0/200</p>
+      <input required type="text" class="form-control" [maxlength]="100" [(ngModel)]="Post.description" #description="ngModel" name="description" id="" placeholder="简短描述">
+      <p class="help-block pull-right">0/100</p>
     </div>
     <div class="form-group">
       <label for="">类型</label>
-      <input type="text" class="form-control" id="" placeholder="简短描述">
-      <p class="help-block pull-right">0/200</p>
+      <input type="text" class="form-control" [(ngModel)]="Post.typeCode" #typeCode="ngModel" name="typeCode" id="" placeholder="类型代码">
     </div>
     <div class="form-group">
       <label for="">标签</label>
-      <input type="text" class="form-control" id="" placeholder="简短描述">
-      <p class="help-block pull-right">0/200</p>
-    </div>
-    <div class="form-group">
-      <label for="">来源</label>
-      <input type="text" class="form-control" id="" placeholder="来源">
-      <p class="help-block pull-right">0/100</p>
+      <input type="text" class="form-control" [(ngModel)]="Post.tags" #tags="ngModel" name="tags" id=""  placeholder="标签">
     </div>
     <div class="form-group">
       <label for="">内容</label>
       <app-froala (froala)="froalaContent($event)"></app-froala>
     </div>
     <div class="form-group">
-      <label for="">预览图</label>
-      <input type="text" class="form-control" id="" placeholder="简短描述">
-      <p class="help-block pull-right">0/200</p>
+      <label for="">预览图(600px*400px)</label>
+      <div class="row">
+        <div class="col-xs-6 col-md-3">
+          <a href="#" class="thumbnail">
+            <img style="width: 300px;height: 200px;">
+          </a>
+        </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-primary">
+    <button (click)="submitPost()" type="button" class="btn btn-primary">
       提交
     </button>
     <a type="button" class="btn btn-default">
