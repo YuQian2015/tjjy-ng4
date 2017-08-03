@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../../interface/hero';
 // service
 import { HeroService } from '../../service/hero.service';
-import { PostService } from '../../service/post.service';
 
 
 
@@ -12,15 +11,11 @@ import { PostService } from '../../service/post.service';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  providers: [HeroService,PostService]
+  providers: [HeroService]
 })
 
 
 export class MainComponent implements OnInit {
-  page:number;
-  pageSize:number;
-  count:number;
-  postList:object;
   hero: Hero;
   title: string;
   heroes: Hero[];
@@ -31,9 +26,7 @@ export class MainComponent implements OnInit {
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
-  constructor(private heroService: HeroService,private postService: PostService) {
-    this.page = 1;
-    this.pageSize = 10;
+  constructor(private heroService: HeroService) {
     this.title = 'Tour of Heroes';
     this.hero = {
       id: 1,
@@ -42,20 +35,6 @@ export class MainComponent implements OnInit {
   }
   ngOnInit() {
     this.getHeroes();
-
-    //获取文章列表
-    this.postService.getPostList(
-      {
-        page:this.page,
-        pageSize:this.pageSize
-      }
-    ).subscribe(data => {
-      if (data) {
-        console.log(data);
-        this.count = data.data.count;
-        this.postList = data.data.result;
-      }
-    });
   }
 
 }

@@ -23,7 +23,7 @@ export class FroalaComponent implements OnInit {
       language: "zh_cn", //配置语言
       placeholderText: "请输入内容", // 文本框提示内容
       charCounterCount: true, // 是否开启统计字数
-      charCounterMax: 200, // 最大输入字数,目前只支持英文字母
+      charCounterMax: 20000, // 最大输入字数,目前只支持英文字母
       // 注意导航条的配置, 按照官方的文档,无法配置,只能使用toolbarButtons来配置了。
       toolbarButtons: ['fullscreen', '|', 'bold', 'italic', 'underline', 'strikeThrough', 'align', 'insertLink', 'insertImage', 'insertHR', 'subscript', 'superscript'],
       codeMirror: false, // 高亮显示html代码
@@ -32,7 +32,7 @@ export class FroalaComponent implements OnInit {
       },
       // 上传图片，视频等稳健配置
       // imageUploadURL: this.questionListService.IP + "sns/uploadPhoto",//GLOBAL.INCONFIG.getIP()+接口名称,
-      imageUploadURL:"http://localhost:3000/api/file/upload",//本地路径
+      imageUploadURL:"http://localhost:3000/api/froala/upload",//本地路径
       // imageUploadParams: { uid: this.questionListService.userInfo.id },//接口其他传参,默认为空对象{},
       imageUploadMethod: "POST",//POST/GET,
       // 事件, 每次输入,就将值传递给父组件, 或者使用失去焦点的时候传递。

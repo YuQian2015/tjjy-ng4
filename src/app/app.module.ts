@@ -18,12 +18,14 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { FileUnploadComponent } from './component/file-unpload/file-unpload.component';
 import { BannerComponent } from './component/banner/banner.component';
 import { FroalaComponent } from './component/froala/froala.component';
+import { PostListComponent } from './component/post-list/post-list.component';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/main' },
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'upload', component: FileUnploadComponent }
+  { path: 'upload', component: FileUnploadComponent },
+  { path: 'post', component: PostListComponent }
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ export const ROUTES: Routes = [
     NavBarComponent,
     FileUnploadComponent,
     BannerComponent,
-    FroalaComponent
+    FroalaComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
