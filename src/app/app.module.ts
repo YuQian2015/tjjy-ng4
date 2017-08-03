@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
-import { AlertModule,CarouselModule } from 'ngx-bootstrap';
+import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 // Import Angular plugin.
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
@@ -19,13 +19,22 @@ import { FileUnploadComponent } from './component/file-unpload/file-unpload.comp
 import { BannerComponent } from './component/banner/banner.component';
 import { FroalaComponent } from './component/froala/froala.component';
 import { PostListComponent } from './component/post-list/post-list.component';
+import { HeroComponent } from './component/hero/hero.component';
+import { NewPostComponent } from './component/new-post/new-post.component';
+import { PostComponent } from './component/post/post.component';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/main' },
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'upload', component: FileUnploadComponent },
-  { path: 'post', component: PostListComponent }
+  { path: 'post', component: PostComponent,
+    children: [
+      { path: '', component: PostListComponent },
+      { path: 'new', component: NewPostComponent },
+    ]
+  },
+  { path: 'hero', component: HeroComponent }
 ];
 
 @NgModule({
@@ -38,13 +47,16 @@ export const ROUTES: Routes = [
     FileUnploadComponent,
     BannerComponent,
     FroalaComponent,
-    PostListComponent
+    PostListComponent,
+    HeroComponent,
+    NewPostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(ROUTES),
-    AlertModule.forRoot(),CarouselModule.forRoot(),
+    AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     HttpModule
   ],

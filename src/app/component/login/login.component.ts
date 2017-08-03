@@ -11,16 +11,12 @@ import { UserService } from '../../service/user.service';
   providers:[UserService],
 })
 export class LoginComponent implements OnInit {
-  public editorValue: string = '';
   isLogin: boolean;
   UserInfo =  new UserInfoModule('', '','','');
   constructor(private userService: UserService) {
     this.isLogin = true;
   }
 
-  froalaContent(event) {
-      console.log(event)
-  }
   login(){
     if(this.UserInfo.email&&this.UserInfo.password){
       this.userService.signIn(
