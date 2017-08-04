@@ -18,7 +18,7 @@ export class NewPostComponent implements OnInit {
 
   froalaContent(content) {
     this.Post.content = content;
-    // console.log(content)
+    console.log(content)
   }
   submitPost() {
     console.log(this.Post);

@@ -15,8 +15,7 @@ export class FroalaComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 在事件中要使用外部的this,因为函数内部也有this所以this的值赋给that
-    var that = this;
+
     // 参数配置
     // https://www.froala.com/wysiwyg-editor/docs/options?utm_expid=98676916-2.gb-QgBReTCCS2F60oBIe_g.0&utm_referrer=https%3A%2F%2Fwww.google.com%2F#language
     this.option = {
@@ -45,8 +44,12 @@ export class FroalaComponent implements OnInit {
 
       // 事件, 每次输入,就将值传递给父组件, 或者使用失去焦点的时候传递。
       events: {
-        'froalaEditor.keyup': function (e, editor) {
-          that.froala.emit(that.froalaText);
+        'froalaEditor.keyup': (e, editor) => {
+          this.froala.emit(this.froalaText);
+          // console.log(editor.selection.get());
+        },
+        'froalaEditor.blur': (e, editor) => {
+          this.froala.emit(this.froalaText);
           // console.log(editor.selection.get());
         }
       }
