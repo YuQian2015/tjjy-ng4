@@ -30,11 +30,19 @@ export class FroalaComponent implements OnInit {
       codeMirrorOptions: { // 配置html代码参数
         tabSize: 4
       },
-      // 上传图片，视频等稳健配置
-      // imageUploadURL: this.questionListService.IP + "sns/uploadPhoto",//GLOBAL.INCONFIG.getIP()+接口名称,
-      imageUploadURL:"http://localhost:3000/api/froala/upload",//本地路径
+
+
+      // 上传图片，视频等配置
+      imageUploadURL:"http://localhost:3000/api/froala/uploadImage",//本地路径
+      imageManagerLoadURL:"http://localhost:3000/api/froala/imageManager",
+      imageManagerDeleteURL:"http://localhost:3000/api/froala/deleteImage",
       // imageUploadParams: { uid: this.questionListService.userInfo.id },//接口其他传参,默认为空对象{},
-      imageUploadMethod: "POST",//POST/GET,
+      imageUploadMethod: "POST",
+      imageManagerLoadMethod: 'POST',
+      imageManagerDeleteMethod: 'POST',
+
+
+
       // 事件, 每次输入,就将值传递给父组件, 或者使用失去焦点的时候传递。
       events: {
         'froalaEditor.keyup': function (e, editor) {
