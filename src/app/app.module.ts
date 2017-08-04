@@ -30,7 +30,7 @@ export const ROUTES: Routes = [
   { path: 'upload', component: FileUnploadComponent },
   { path: 'post', component: PostComponent,
     children: [
-      { path: '', component: PostListComponent },
+      { path: 'list', component: PostListComponent },
       { path: 'new', component: NewPostComponent },
     ]
   },

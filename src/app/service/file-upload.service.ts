@@ -9,7 +9,7 @@ export class FileUploadService {
   constructor(private http: Http) { }
 
   upload(formData) {
-    const url = `${this.baseUrl}/file/upload`;
+    const url = `${this.baseUrl}/file/uploadImage`;
     return this.http.post(url, formData)
       .map((res: Response) => res.json())
   }
