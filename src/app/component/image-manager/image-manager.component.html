@@ -4,7 +4,7 @@
     <div class="dropbox">
       <input type="file" multiple [name]="uploadFieldName" (change)="filesChange($event.target.name, $event.target.files)" [disabled]="currentStatus === STATUS_SAVING" accept="image/*" #photos>
       <p *ngIf="currentStatus === STATUS_INITIAL">
-        拖动文件到此处或者点击
+        拖动图片\点击
       </p>
       <p *ngIf="currentStatus === STATUS_SAVING">
         上传 {{ photos.files.length }} 个文件…
@@ -14,7 +14,7 @@
 
   <!--SUCCESS-->
   <div class="margin-20" *ngIf="currentStatus === STATUS_SUCCESS">
-    <h5>成功上传{{ uploadedFiles.length }}个文件</h5>
+    成功上传{{ uploadedFiles.length }}个文件
     <p>
       <a href="javascript:void(0)" (click)="reset()">重新上传</a>
     </p>

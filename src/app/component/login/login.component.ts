@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { UserInfoModule }    from '../../module/user-info/user-info.module';
 
 
@@ -13,7 +15,7 @@ import { UserService } from '../../service/user.service';
 export class LoginComponent implements OnInit {
   isLogin: boolean;
   UserInfo =  new UserInfoModule('', '','','');
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.isLogin = true;
   }
 
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
         }).subscribe(data => {
           if (data) {
             console.log(data.data.result);
-            localStorage.setItem("token",data.data.token)
+            localStorage.setItem("token",data.data.token);
+            this.router.navigate(['/main']);
           }
         });
     }
