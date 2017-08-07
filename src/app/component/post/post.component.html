@@ -1,3 +1,11 @@
-<a routerLink="/post/new" routerLinkActive="btn-danger" class="btn">新增</a>
-<a routerLink="/post/list" routerLinkActive="btn-danger" class="btn">列表</a>
+<div class="container">
+  <div class="btn-group">
+    <button routerLink="/post/list" type="button" class="btn btn-default" routerLinkActive="btn-primary">
+      列表
+    </button>
+    <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
+      新增
+    </button>
+  </div>
+</div>
 <router-outlet></router-outlet>

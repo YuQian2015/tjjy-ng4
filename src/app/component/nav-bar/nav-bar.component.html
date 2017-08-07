@@ -18,7 +18,8 @@
           <li routerLinkActive="active"><a routerLink="/hero">hero</a></li>
         </ul>
         <ul class="nav navbar-nav  navbar-right">
-          <li *ngIf="!isLogin" routerLinkActive="active"><a routerLink="/login">登录</a></li>
+          <li *ngIf="user"><a href="javascript:void(0)">{{user.name}}</a></li>
+          <li *ngIf="!isLogin" (click)="openModal(template)" routerLinkActive="active"><a href="javascript:void(0)">登录</a></li>
           <li *ngIf="isLogin" (click)="logout()"><a routerLink="">退出登录</a></li>
         </ul>
       </div>
@@ -26,3 +27,15 @@
     </div>
   </nav>
 </nav>
+
+<template #template class=" modal-sm">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">登录/注册</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-login (user)="getUser($event)"></app-login>
+  </div>
+</template>

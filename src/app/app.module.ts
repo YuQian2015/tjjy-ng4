@@ -29,6 +29,8 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'post', component: PostComponent,
     children: [
+
+      { path: '', pathMatch: 'full', redirectTo: '/post/list' },
       { path: 'list', component: PostListComponent },
       { path: 'new', component: NewPostComponent },
     ]

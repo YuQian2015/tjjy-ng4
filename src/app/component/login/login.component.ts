@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserInfoModule }    from '../../module/user-info/user-info.module';
@@ -13,6 +13,8 @@ import { UserService } from '../../service/user.service';
   providers:[UserService],
 })
 export class LoginComponent implements OnInit {
+  @Output() user = new EventEmitter();
+
   isLogin: boolean;
   UserInfo =  new UserInfoModule('', '','','');
   constructor(private userService: UserService, private router: Router) {
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
         }).subscribe(data => {
           if (data) {
             console.log(data.data.result);
+            this.user.emit(data.data.result);
             localStorage.setItem("token",data.data.token);
             this.router.navigate(['/main']);
           }
