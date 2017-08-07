@@ -1,0 +1,37 @@
+<div>
+  <!--UPLOAD-->
+  <form #f="ngForm" enctype="multipart/form-data" novalidate *ngIf="currentStatus === STATUS_INITIAL || currentStatus === STATUS_SAVING">
+    <div class="dropbox">
+      <input type="file" multiple [name]="uploadFieldName" (change)="filesChange($event.target.name, $event.target.files)" [disabled]="currentStatus === STATUS_SAVING" accept="image/*" #photos>
+      <p *ngIf="currentStatus === STATUS_INITIAL">
+        拖动文件到此处或者点击
+      </p>
+      <p *ngIf="currentStatus === STATUS_SAVING">
+        上传 {{ photos.files.length }} 个文件…
+      </p>
+    </div>
+  </form>
+
+  <!--SUCCESS-->
+  <div class="margin-20" *ngIf="currentStatus === STATUS_SUCCESS">
+    <h5>成功上传{{ uploadedFiles.length }}个文件</h5>
+    <p>
+      <a href="javascript:void(0)" (click)="reset()">重新上传</a>
+    </p>
+    <ul class="list-unstyled">
+      <li *ngFor="let item of uploadedFiles">
+        <img [src]="item.url" class="img-responsive img-thumbnail" [alt]="item.filename">
+      </li>
+    </ul>
+  </div>
+
+
+  <!--FAILED-->
+  <div class="margin-20" *ngIf="currentStatus === STATUS_FAILED">
+    <h2>上传失败</h2>
+    <p>
+      <a href="javascript:void(0)" (click)="reset()">再试</a>
+    </p>
+    <pre>{{ uploadError | json }}</pre>
+  </div>
+</div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FileUnploadComponent } from './file-unpload.component';
+import { ImageManagerComponent } from './image-manager.component';
 
-describe('FileUnploadComponent', () => {
-  let component: FileUnploadComponent;
-  let fixture: ComponentFixture<FileUnploadComponent>;
+describe('ImageManagerComponent', () => {
+  let component: ImageManagerComponent;
+  let fixture: ComponentFixture<ImageManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FileUnploadComponent ]
+      declarations: [ ImageManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FileUnploadComponent);
+    fixture = TestBed.createComponent(ImageManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

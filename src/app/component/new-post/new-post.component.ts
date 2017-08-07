@@ -20,6 +20,10 @@ export class NewPostComponent implements OnInit {
     this.Post.content = content;
     console.log(content)
   }
+  setCover(cover){
+    this.Post.cover = cover[0].url;
+    console.log(cover);
+  }
   submitPost() {
     console.log(this.Post);
     //获取文章列表

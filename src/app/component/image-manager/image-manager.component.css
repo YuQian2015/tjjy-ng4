@@ -1,0 +1,29 @@
+.dropbox {
+  outline: 1px dashed #3ea5ec;
+  /* the dash box */
+  background: #FFF;
+  position: relative;
+  cursor: pointer;
+}
+
+.dropbox:hover {
+  background: #F5F5F5;
+  /* when mouse over to the drop zone, change color */
+}
+
+.dropbox input[type="file"] {
+  opacity: 0;
+  width: 100%;
+  min-height: 100px;
+  max-height: 200px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.dropbox p {
+  min-height: 100px;
+  line-height: 100px;
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+}

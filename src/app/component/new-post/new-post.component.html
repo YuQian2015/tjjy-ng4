@@ -25,11 +25,11 @@
     <div class="form-group">
       <label for="">预览图(600px*400px)</label>
       <div class="row">
-        <div class="col-xs-6 col-md-3">
-          <a href="#" class="thumbnail">
-            <img style="width: 300px;height: 200px;">
-          </a>
-        </div>
+          <div class="col-xs-6 col-md-3">
+            <a href="javascript:void(0)" class="thumbnail">
+                <app-image-manager (manage)="setCover($event)"></app-image-manager>
+            </a>
+          </div>
       </div>
     </div>
     <button (click)="submitPost()" type="button" class="btn btn-primary">
