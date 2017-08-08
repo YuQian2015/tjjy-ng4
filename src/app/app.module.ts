@@ -5,8 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
 import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
+
 // Import Angular plugin.
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 
 // component
@@ -59,7 +61,8 @@ export const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
-    HttpModule
+    HttpModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,6 +20,7 @@ export class ImageManagerComponent implements OnInit {
   readonly STATUS_SAVING = 1;
   readonly STATUS_SUCCESS = 2;
   readonly STATUS_FAILED = 3;
+  readonly STATUS_MENU = 4;
 
 
 
@@ -29,6 +30,7 @@ export class ImageManagerComponent implements OnInit {
 
   constructor(private _svc: FileUploadService) {
     this.reset(); // set initial state
+    this.currentStatus = 4;
   }
 
 
