@@ -41,7 +41,9 @@ export class ImageManagerComponent implements OnInit {
     this.uploadedFiles = [];
     this.uploadError = null;
   }
-
+  addImage(){
+    this.currentStatus = this.STATUS_INITIAL;
+  }
 
   filesChange(fieldName: string, fileList: FileList) {
     // handle file changes

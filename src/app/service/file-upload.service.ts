@@ -4,7 +4,7 @@ import { Http, Response } from '@angular/http';
 @Injectable()
 export class FileUploadService {
 
-  baseUrl = 'http://localhost:3000/api'; // our local Hapi Js API
+  baseUrl = 'http://47.92.101.205:3000/api'; // our local Hapi Js API
 
   constructor(private http: Http) { }
 

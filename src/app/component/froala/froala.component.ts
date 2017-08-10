@@ -32,9 +32,9 @@ export class FroalaComponent implements OnInit {
 
 
       // 上传图片，视频等配置
-      imageUploadURL:"http://localhost:3000/api/froala/uploadImage",//本地路径
-      imageManagerLoadURL:"http://localhost:3000/api/froala/imageManager",
-      imageManagerDeleteURL:"http://localhost:3000/api/froala/deleteImage",
+      imageUploadURL:"http://47.92.101.205:3000/api/froala/uploadImage",//本地路径
+      imageManagerLoadURL:"http://47.92.101.205:3000/api/froala/imageManager",
+      imageManagerDeleteURL:"http://47.92.101.205:3000/api/froala/deleteImage",
       // imageUploadParams: { uid: this.questionListService.userInfo.id },//接口其他传参,默认为空对象{},
       imageUploadMethod: "POST",
       imageManagerLoadMethod: 'POST',

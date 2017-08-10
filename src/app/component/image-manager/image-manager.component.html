@@ -1,7 +1,7 @@
 <div>
 
 
-  <div *ngIf="currentStatus === STATUS_MENU">
+  <div (click)="addImage()" *ngIf="currentStatus === STATUS_MENU">
     <fa name="plus-circle"></fa>
   </div>
   <!--UPLOAD-->

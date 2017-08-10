@@ -17,7 +17,7 @@ import { ResponseModule } from '../module/response/response.module';
 export class UserService {
 
   // private instance variable to hold base url
-  private commentsUrl = 'http://localhost:3000/api/user/signup';
+  private commentsUrl = 'http://47.92.101.205:3000/api/user/signup';
   Comment = {
     id: Date,
     author: String,
@@ -86,7 +86,7 @@ export class UserService {
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:3000/api/user/signin', bodyString, options)
+    return this.http.post('http://47.92.101.205:3000/api/user/signin', bodyString, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
