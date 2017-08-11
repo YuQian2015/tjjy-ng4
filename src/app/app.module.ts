@@ -11,6 +11,18 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 
+/* Routing Module */
+import { AppRoutingModule }  from './app-routing.module';
+
+// service
+import { UserService } from './service/user.service';
+
+//module
+import { PostsModule } from './posts/posts.module';
+import { UserModule } from './user/user.module';
+
+
+
 // component
 import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
@@ -25,24 +37,10 @@ import { NewPostComponent } from './component/new-post/new-post.component';
 import { PostComponent } from './component/post/post.component';
 import { ImageManagerComponent } from './component/image-manager/image-manager.component';
 
-export const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/main' },
-  { path: 'main', component: MainComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'post', component: PostComponent,
-    children: [
-
-      { path: '', pathMatch: 'full', redirectTo: '/post/list' },
-      { path: 'list', component: PostListComponent },
-      { path: 'new', component: NewPostComponent },
-    ]
-  },
-  { path: 'hero', component: HeroComponent }
-];
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,//根组件
     LoginComponent,
     MainComponent,
     UserInfoComponent,
@@ -58,13 +56,15 @@ export const ROUTES: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES),
     AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     HttpModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    AppRoutingModule,
+    // UserModule,
+    PostsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [UserService],
+  bootstrap: [AppComponent]//启动根组件到index.html
 })
 export class AppModule { }

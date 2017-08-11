@@ -9,8 +9,7 @@ import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers:[UserService],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   @Output() user = new EventEmitter();
