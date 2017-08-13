@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { PostComponent } from '../component/post/post.component';
 
+import { PostsRoutingModule }  from './posts-routing.module';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,PostsRoutingModule
   ],
   declarations: [],
   exports: []
