@@ -19,23 +19,20 @@ import { SharedModule }  from './shared/shared.module';
 import { UserService } from './service/user.service';
 
 //module
-import { PostsModule } from './posts/posts.module';
+// import { PostsModule } from './posts/posts.module';
+// import { MainModule } from './main/main.module';
 
 // component
 import { AppComponent } from './app.component';
-import { LoginComponent } from './component/login/login.component';
-// import { MainComponent } from './component/main/main.component';
-import { NavBarComponent } from './component/nav-bar/nav-bar.component';
-// import { BannerComponent } from './component/banner/banner.component';
+import { LoginComponent } from './features/login/login.component';
+import { NavBarComponent } from './features/nav-bar/nav-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,//根组件
     LoginComponent,
-    // MainComponent,
-    NavBarComponent,
-    // BannerComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +42,8 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
     HttpModule,
     // AngularFontAwesomeModule,
     AppRoutingModule,
-    PostsModule,
+    // PostsModule,
+    // MainModule,
     SharedModule
   ],
   providers: [UserService],
