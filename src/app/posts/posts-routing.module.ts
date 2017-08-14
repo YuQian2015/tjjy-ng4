@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 
-import { PostComponent } from '../component/post/post.component';
-import { PostListComponent } from '../component/post-list/post-list.component';
-import { NewPostComponent } from '../component/new-post/new-post.component';
+// import { SharedModule }  from '../shared/shared.module';
+import { PostComponent } from './post/post.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 export const ROUTES: Routes = [
-  { path: 'post', component: PostComponent,
+  { path: '', component: PostComponent,
     children: [
-
-      { path: '', pathMatch: 'full', redirectTo: '/post/list' },
+      { path: '', pathMatch: 'full', redirectTo: '/post/new' },
       { path: 'list', component: PostListComponent },
       { path: 'new', component: NewPostComponent },
     ]
@@ -21,9 +21,10 @@ export const ROUTES: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    // SharedModule
   ],
-  declarations: [ ],
+  declarations: [  ],
   exports: [RouterModule]
 })
 export class PostsRoutingModule { }

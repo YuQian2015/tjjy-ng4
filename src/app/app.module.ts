@@ -7,12 +7,13 @@ import { HttpModule }    from '@angular/http';
 import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 // Import Angular plugin.
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+// import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 
 /* Routing Module */
 import { AppRoutingModule }  from './app-routing.module';
+import { SharedModule }  from './shared/shared.module';
 
 // service
 import { UserService } from './service/user.service';
@@ -30,12 +31,11 @@ import { MainComponent } from './component/main/main.component';
 import { UserInfoComponent } from './component/user-info/user-info.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { BannerComponent } from './component/banner/banner.component';
-import { FroalaComponent } from './component/froala/froala.component';
-import { PostListComponent } from './component/post-list/post-list.component';
+// import { PostListComponent } from './component/post-list/post-list.component';
 import { HeroComponent } from './component/hero/hero.component';
-import { NewPostComponent } from './component/new-post/new-post.component';
-import { PostComponent } from './component/post/post.component';
-import { ImageManagerComponent } from './component/image-manager/image-manager.component';
+// import { NewPostComponent } from './component/new-post/new-post.component';
+// import { PostComponent } from './component/post/post.component';
+// import { ImageManagerComponent } from './component/image-manager/image-manager.component';
 
 
 @NgModule({
@@ -46,23 +46,23 @@ import { ImageManagerComponent } from './component/image-manager/image-manager.c
     UserInfoComponent,
     NavBarComponent,
     BannerComponent,
-    FroalaComponent,
-    PostListComponent,
+    // PostListComponent,
     HeroComponent,
-    NewPostComponent,
-    PostComponent,
-    ImageManagerComponent
+    // NewPostComponent,
+    // PostComponent,
+    // ImageManagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    // FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     HttpModule,
-    AngularFontAwesomeModule,
+    // AngularFontAwesomeModule,
     AppRoutingModule,
     // UserModule,
-    PostsModule
+    PostsModule,
+    SharedModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]//启动根组件到index.html

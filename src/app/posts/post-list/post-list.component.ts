@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // service
-import { PostService } from '../../service/post.service';
+import { PostService } from '../post.service';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
