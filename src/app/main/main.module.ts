@@ -8,14 +8,12 @@ import { BannerComponent } from './banner/banner.component';
 import { MainRoutingModule }  from './main-routing.module';
 import { SharedModule }  from '../shared/shared.module';
 
-import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
     MainRoutingModule,
-    SharedModule,
-    AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
+    SharedModule
   ],
   declarations: [
     MainComponent,

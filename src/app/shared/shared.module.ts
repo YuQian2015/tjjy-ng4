@@ -26,6 +26,7 @@ import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
     FormsModule,
     FroalaComponent,
     AngularFontAwesomeModule,
+    AlertModule,CarouselModule,ModalModule,
     ImageManagerComponent,
   ]
 })

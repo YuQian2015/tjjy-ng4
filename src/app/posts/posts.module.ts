@@ -9,14 +9,11 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { SharedModule }  from '../shared/shared.module';
 import { PostsRoutingModule }  from './posts-routing.module';
 
-import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
-
 @NgModule({
   imports: [
     CommonModule,
     PostsRoutingModule,
-    SharedModule,
-    AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
+    SharedModule
   ],
   declarations: [
     PostComponent,PostListComponent,NewPostComponent
