@@ -18,14 +18,15 @@ import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
     AngularFontAwesomeModule,
   ],
   declarations: [
-    FroalaComponent,ImageManagerComponent
+    FroalaComponent,
+    ImageManagerComponent,
   ],
   exports:[
     CommonModule,
     FormsModule,
     FroalaComponent,
     AngularFontAwesomeModule,
-    ImageManagerComponent
+    ImageManagerComponent,
   ]
 })
 export class SharedModule { }

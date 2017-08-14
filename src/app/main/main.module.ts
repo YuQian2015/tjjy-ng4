@@ -1,26 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PostComponent } from './post/post.component';
-import { PostListComponent } from './post-list/post-list.component';
-import { NewPostComponent } from './new-post/new-post.component';
 
+import { MainComponent } from './main/main.component';
+import { BannerComponent } from './banner/banner.component';
 
+import { MainRoutingModule }  from './main-routing.module';
 import { SharedModule }  from '../shared/shared.module';
-import { PostsRoutingModule }  from './posts-routing.module';
 
 import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
-    PostsRoutingModule,
+    MainRoutingModule,
     SharedModule,
     AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
   ],
   declarations: [
-    PostComponent,PostListComponent,NewPostComponent
-  ],
-  exports: []
+    MainComponent,
+    BannerComponent
+  ]
 })
-export class PostsModule { }
+export class MainModule { }
