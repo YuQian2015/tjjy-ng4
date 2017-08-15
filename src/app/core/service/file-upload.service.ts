@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { url,api } from '../config/api.config';
+
 @Injectable()
 export class FileUploadService {
-
-  baseUrl = 'http://47.92.101.205:3000/api'; // our local Hapi Js API
 
   constructor(private http: Http) { }
 
   upload(formData) {
-    const url = `${this.baseUrl}/file/uploadImage`;
-    return this.http.post(url, formData)
+    return this.http.post(url.baseUrl+api.uploadImage, formData)
       .map((res: Response) => res.json())
   }
 }
