@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserInfoModule }    from '../../module/user-info/user-info.module';
+import { UserInfoModule }    from './user-info.module';
 
 
-import { UserService } from '../../service/user.service';
+import { UserService } from '../../core/service/user.service';
 
 @Component({
   selector: 'app-login',

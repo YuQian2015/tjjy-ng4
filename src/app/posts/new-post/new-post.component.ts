@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModule }    from '../../module/post/post.module';
+import { NewPostModule }    from './new-post.module';
 // service
 import { PostService } from '../post.service';
 
@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
 })
 export class NewPostComponent implements OnInit {
 
-  Post = new PostModule('', '', '', '', true, [], '');
+  Post = new NewPostModule('', '', '', '', true, [], '');
 
   public editorValue: string = '';
   constructor(private postService: PostService) { }

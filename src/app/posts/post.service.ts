@@ -4,7 +4,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
-import { ResponseModule } from '../module/response/response.module';
+import { ResponseInterface } from '../interface/response.interface';
+
 
 @Injectable()
 export class PostService {
@@ -12,7 +13,7 @@ export class PostService {
   constructor(private http: Http) { }
 
   // 获取文章
-  getPostList(requestBody): Observable<ResponseModule>{
+  getPostList(requestBody): Observable<ResponseInterface>{
     let bodyString = JSON.stringify(requestBody);
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
     let options = new RequestOptions({ headers: headers });
@@ -23,7 +24,7 @@ export class PostService {
   }
 
   // 添加文章
-  addPostList(requestBody): Observable<ResponseModule>{
+  addPostList(requestBody): Observable<ResponseInterface>{
     let bodyString = JSON.stringify(requestBody);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

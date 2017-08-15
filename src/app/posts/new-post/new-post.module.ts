@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class PostModule {
+export class NewPostModule {
   constructor(
     public title: string,
     public description: string,

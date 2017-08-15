@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { FileUploadService } from '../../service/file-upload.service';
+import { FileUploadService } from '../../core/service/file-upload.service';
 @Component({
   selector: 'app-image-manager',
   templateUrl: './image-manager.component.html',
