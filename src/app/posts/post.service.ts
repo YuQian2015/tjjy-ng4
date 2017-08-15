@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Rx';
 
 import { ResponseInterface } from '../interface/response.interface';
+import { url,api } from '../core/config/api.config';
 
 
 @Injectable()
@@ -18,7 +19,7 @@ export class PostService {
     let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://47.92.101.205:3000/api/post/getPostList', bodyString ,options)
+    return this.http.post(url.baseUrl+api.getPostList, bodyString ,options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
@@ -29,7 +30,7 @@ export class PostService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://47.92.101.205:3000/api/protect/addPost', bodyString ,options)
+    return this.http.post(url.baseUrl+api.addPost, bodyString ,options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
