@@ -12,5 +12,6 @@ export const api = {
   uploadImage : "/file/uploadImage",
 
   getPostList : "/post/getPostList",
-  addPost : "/protect/addPost"
+  addPost : "/protect/addPost",
+  getPost : "/post/getPost"
 }
