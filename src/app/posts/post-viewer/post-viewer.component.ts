@@ -13,12 +13,7 @@ import { PostService } from '../post.service';
 })
 export class PostViewerComponent implements OnInit {
 
-  title:string;
-  authorName:string;
-  content:string;
-  cover:string;
-  pageviews:number;
-  likes:number;
+  post:object;
 
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
@@ -31,7 +26,7 @@ export class PostViewerComponent implements OnInit {
         }
       ))
     // .switchMap((params: ParamMap) => this.heroService.getHero(params.get('id')))
-    .subscribe(post => console.log(post));
+    .subscribe(post => console.log(post.data.result));
   }
 
 }
