@@ -1,49 +1,37 @@
 <div class="container">
   <nav class="navbar navbar-default">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="搜索">
-        </div>
-        <button type="submit" class="btn btn-default">搜索</button>
-      </form>
-      <div class="navbar-form navbar-right">
-        <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
+    <form class="navbar-form navbar-left">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="搜索">
+      </div>
+      <button type="submit" class="btn btn-default">搜索</button>
+      <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
           <fa name="plus-circle"></fa> 新增
+      </button>
+      <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
+          <fa name="plus-circle"></fa> 编辑
+      </button>
+    </form>
+    <div class="navbar-form navbar-right">
+      <div class="btn-group btn-group-sm">
+        <button (click)="changeLayout('list')" type="button" class="btn btn-default" [ngClass]="{'btn-primary':layout == 'list'}">
+          <fa name="th-list"></fa> 列表
+        </button>
+        <button (click)="changeLayout('grid')" type="button" class="btn btn-default" [ngClass]="{'btn-primary':layout == 'grid'}">
+          <fa name="th-large"></fa> 栅格
         </button>
       </div>
+    </div>
   </nav>
 
-  <alert type="info">
-    <strong>内容列表</strong> {{page}}/{{count}} 总共{{count}}条结果
-  </alert>
   <div class="row">
-    <div class="col-sm-6 col-md-4" *ngFor="let post of postList | paginate: { itemsPerPage: pageSize, currentPage: page , totalItems: count }">
-      <app-post [post]="post"></app-post>
+    <div class="col-sm-12 col-md-12" [ngClass]="{'col-sm-6 col-md-4':layout == 'grid'}" *ngFor="let post of postList">
+      <app-post [layout]="layout" [post]="post"></app-post>
     </div>
   </div>
 
-
-  <!-- <nav aria-label="Page navigation">
-    <ul class="pagination">
-      <li *ngIf="previous">
-        <a href="javascript:void(0)" (click)="getPostList(page-1,pageSize)" aria-label="Previous">
-          <span aria-hidden="true">上一页</span>
-        </a>
-      </li>
-      <li class="active"><a href="javascript:void(0)">{{page}}</a></li>
-      <li *ngIf="next">
-        <a href="javascript:void(0)" (click)="getPostList(page+1,pageSize)" aria-label="Next">
-          <span aria-hidden="true">下一页</span>
-        </a>
-      </li>
-    </ul>
-  </nav> -->
-
-  <pagination-controls
-    previousLabel = "上一页"
-    nextLabel = "下一页"
-    screenReaderPaginationLabel = "分页"
-    screenReaderPageLabel = "翻页"
-    screenReaderCurrentLabel  = "当前页"
-   (pageChange)="pageChange($event)"></pagination-controls>
+  <alert type="info">
+    <strong>内容列表</strong> 总共{{count}}条结果
+  </alert>
+  <pagination [totalItems]="count" [maxSize]="maxSize" [boundaryLinks]="true" [rotate]="false" firstText="首页" previousText="上一页" nextText="下一页" lastText="尾页" [itemsPerPage]="pageSize" [(ngModel)]="page" (pageChanged)="pageChange($event)"></pagination>
 </div>

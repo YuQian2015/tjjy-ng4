@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PostComponent implements OnInit {
 
   @Input() post: object;
+  @Input() layout: string;
 
   constructor() {
   }

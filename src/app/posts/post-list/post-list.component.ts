@@ -9,6 +9,8 @@ import { PostService } from '../post.service';
   providers: [PostService]
 })
 export class PostListComponent implements OnInit {
+  public maxSize:number = 5;
+  public layout:string = "grid";
   page: number;
   pageSize: number;
   count: number;
@@ -19,7 +21,7 @@ export class PostListComponent implements OnInit {
 
   constructor(private postService: PostService) {
     this.page = 1;
-    this.pageSize = 2;
+    this.pageSize = 10;
   }
 
   ngOnInit() {
@@ -46,7 +48,10 @@ export class PostListComponent implements OnInit {
       }
     });
   }
-  pageChange(page){
-    this.getPostList(page,this.pageSize)
+  pageChange(e){
+    this.getPostList(e.page,e.itemsPerPage)
+  }
+  changeLayout(type){
+    this.layout = type;
   }
 }

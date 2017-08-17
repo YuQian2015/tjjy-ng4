@@ -1,8 +1,40 @@
-<div class="thumbnail">
-  <img src="{{post.cover}}" alt="...">
+<div *ngIf="layout=='grid'" routerLink="/post/{{post._id}}" class="thumbnail">
+  <img src="{{post.cover?post.cover:'http://localhost:8089/static/images/default.jpg'}}" alt="{{post.title}}">
   <div class="caption">
     <h3>{{post.title}}</h3>
     <p>{{post.description}}</p>
-    <p><a href="#" class="btn btn-primary" role="button" routerLink="/post/{{post._id}}" >查看</a></p>
+  </div>
+</div>
+
+<div *ngIf="layout=='list'" class="media">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object avatar" src="{{post.cover?post.cover:'http://localhost:8089/static/images/default.jpg'}}" alt="{{post.title}}">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">12312312312312</h4>
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
+    123123123123123
   </div>
 </div>
