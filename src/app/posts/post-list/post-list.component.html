@@ -14,32 +14,36 @@
   </nav>
 
   <alert type="info">
-    <strong>内容列表</strong> {{page}}/{{count}}
+    <strong>内容列表</strong> {{page}}/{{count}} 总共{{count}}条结果
   </alert>
   <div class="row">
-    <div class="col-sm-6 col-md-4" *ngFor="let post of postList">
+    <div class="col-sm-6 col-md-4" *ngFor="let post of postList | paginate: { itemsPerPage: pageSize, currentPage: page , totalItems: count }">
       <app-post [post]="post"></app-post>
     </div>
   </div>
 
 
-  <nav aria-label="Page navigation">
+  <!-- <nav aria-label="Page navigation">
     <ul class="pagination">
-      <li>
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
+      <li *ngIf="previous">
+        <a href="javascript:void(0)" (click)="getPostList(page-1,pageSize)" aria-label="Previous">
+          <span aria-hidden="true">上一页</span>
         </a>
       </li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li>
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
+      <li class="active"><a href="javascript:void(0)">{{page}}</a></li>
+      <li *ngIf="next">
+        <a href="javascript:void(0)" (click)="getPostList(page+1,pageSize)" aria-label="Next">
+          <span aria-hidden="true">下一页</span>
         </a>
       </li>
     </ul>
-  </nav>
+  </nav> -->
+
+  <pagination-controls
+    previousLabel = "上一页"
+    nextLabel = "下一页"
+    screenReaderPaginationLabel = "分页"
+    screenReaderPageLabel = "翻页"
+    screenReaderCurrentLabel  = "当前页"
+   (pageChange)="pageChange($event)"></pagination-controls>
 </div>

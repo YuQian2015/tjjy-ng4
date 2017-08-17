@@ -7,6 +7,9 @@ export interface ResponseInterface {
     token?: string,
     page?: number,
     pageSize?: number,
-    count?: number
+    count?: number,
+    totalPage?: number,
+    previous?: boolean,
+    next?: boolean,
   }
 }

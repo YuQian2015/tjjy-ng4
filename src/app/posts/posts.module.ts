@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { SharedModule }  from '../shared/shared.module';
 import { PostsRoutingModule }  from './posts-routing.module';
 
@@ -14,7 +16,8 @@ import { PostContainerComponent } from './post-container/post-container.componen
   imports: [
     CommonModule,
     PostsRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule
   ],
   declarations: [
     PostComponent,PostListComponent,NewPostComponent, PostViewerComponent, PostContainerComponent
