@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
+
 // service
 import { PostService } from '../post.service';
 
@@ -25,8 +26,9 @@ export class PostViewerComponent implements OnInit {
           userId: "string"
         }
       ))
-    // .switchMap((params: ParamMap) => this.heroService.getHero(params.get('id')))
-    .subscribe(post => console.log(post.data.result));
+    .subscribe(post => {
+      this.post = post.data.result;
+    });
   }
 
 }

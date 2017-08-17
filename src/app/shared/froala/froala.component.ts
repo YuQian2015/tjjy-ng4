@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+import { url } from '../../core/config/api.config';
+
 @Component({
   selector: 'app-froala',
   templateUrl: './froala.component.html',
@@ -32,9 +34,9 @@ export class FroalaComponent implements OnInit {
 
 
       // 上传图片，视频等配置
-      imageUploadURL:"http://47.92.101.205:3000/api/froala/uploadImage",//本地路径
-      imageManagerLoadURL:"http://47.92.101.205:3000/api/froala/imageManager",
-      imageManagerDeleteURL:"http://47.92.101.205:3000/api/froala/deleteImage",
+      imageUploadURL:url.baseUrl+"/froala/uploadImage",//本地路径
+      imageManagerLoadURL:url.baseUrl+"/froala/imageManager",
+      imageManagerDeleteURL:url.baseUrl+"/froala/deleteImage",
       // imageUploadParams: { uid: this.questionListService.userInfo.id },//接口其他传参,默认为空对象{},
       imageUploadMethod: "POST",
       imageManagerLoadMethod: 'POST',

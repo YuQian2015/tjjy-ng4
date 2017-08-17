@@ -11,7 +11,7 @@ import { PostService } from '../post.service';
 })
 export class NewPostComponent implements OnInit {
 
-  Post = new NewPostModule('', '', '', '', true, [], '');
+  Post = new NewPostModule('', '', '', '01', true, [], '');
 
   public editorValue: string = '';
   constructor(private postService: PostService) { }
