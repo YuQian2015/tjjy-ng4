@@ -6,35 +6,14 @@
   </div>
 </div>
 
-<div *ngIf="layout=='list'" class="media">
+<div *ngIf="layout=='list'" routerLink="/post/{{post._id}}" class="media">
   <div class="media-left media-middle">
     <a href="#">
       <img class="media-object avatar" src="{{post.cover?post.cover:'http://localhost:8089/static/images/default.jpg'}}" alt="{{post.title}}">
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">12312312312312</h4>
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
-    123123123123123
+    <h4 class="media-heading">{{post.title}}</h4>
+    {{post.description}}
   </div>
 </div>

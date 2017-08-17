@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { SharedModule }  from '../shared/shared.module';
 import { PostsRoutingModule }  from './posts-routing.module';
@@ -17,7 +18,7 @@ import { PostContainerComponent } from './post-container/post-container.componen
     CommonModule,
     PostsRoutingModule,
     SharedModule,
-    PaginationModule.forRoot()
+    TooltipModule.forRoot(),PaginationModule.forRoot()
   ],
   declarations: [
     PostComponent,PostListComponent,NewPostComponent, PostViewerComponent, PostContainerComponent

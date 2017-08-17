@@ -5,15 +5,15 @@
         <input type="text" class="form-control" placeholder="搜索">
       </div>
       <button type="submit" class="btn btn-default">搜索</button>
-      <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
+      <button routerLink="/post/new" type="button" class="btn btn-success">
           <fa name="plus-circle"></fa> 新增
       </button>
-      <button routerLink="/post/new" type="button" class="btn btn-default" routerLinkActive="btn-primary">
-          <fa name="plus-circle"></fa> 编辑
-      </button>
     </form>
-    <div class="navbar-form navbar-right">
-      <div class="btn-group btn-group-sm">
+    <div class="navbar-form navbar-right" [ngStyle]="{'margin-right':'0'}">
+      <button type="button" class="btn btn-default" tooltip="设置" placement="bottom">
+        <fa name="cog"></fa>
+      </button>
+      <div class="btn-group">
         <button (click)="changeLayout('list')" type="button" class="btn btn-default" [ngClass]="{'btn-primary':layout == 'list'}">
           <fa name="th-list"></fa> 列表
         </button>
@@ -25,7 +25,7 @@
   </nav>
 
   <div class="row">
-    <div class="col-sm-12 col-md-12" [ngClass]="{'col-sm-6 col-md-4':layout == 'grid'}" *ngFor="let post of postList">
+    <div class="col-sm-12 col-md-12" [ngClass]="{'col-sm-4 col-md-3':layout == 'grid'}" *ngFor="let post of postList">
       <app-post [layout]="layout" [post]="post"></app-post>
     </div>
   </div>

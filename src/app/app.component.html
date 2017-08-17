@@ -1,2 +1,4 @@
-<app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
+<perfect-scrollbar class="container container-fluid" style="width:100%;height:900px;" [config]="config">
+  <app-nav-bar></app-nav-bar>
+  <div class="content"><router-outlet></router-outlet></div>
+</perfect-scrollbar>
