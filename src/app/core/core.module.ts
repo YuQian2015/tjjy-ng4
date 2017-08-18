@@ -1,17 +1,21 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// service
+import { UserService } from './service/user.service';
+
 @NgModule({
   imports: [
     CommonModule
   ],
+  providers: [UserService],
   declarations: []
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [],
+      providers: []
     };
   }
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
