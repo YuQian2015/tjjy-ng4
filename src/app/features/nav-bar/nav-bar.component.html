@@ -28,6 +28,7 @@
 </nav>
 
 <template #template class=" modal-sm">
+  <ngx-loading [show]="true" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   <div class="modal-header">
     <h4 class="modal-title pull-left">登录/注册</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -35,6 +36,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-login (user)="getUser($event)"></app-login>
+    <app-login (signup)="signup($event)" (user)="getUser($event)"></app-login>
   </div>
 </template>

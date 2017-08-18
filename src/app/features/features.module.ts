@@ -12,7 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   imports: [
-    CommonModule,FormsModule,HttpModule,SharedModule,RouterModule
+    CommonModule,FormsModule,HttpModule,SharedModule,RouterModule,
   ],
   declarations: [
     LoginComponent,

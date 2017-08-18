@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // service
 import { PostService } from '../post.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
@@ -19,7 +20,7 @@ export class PostListComponent implements OnInit {
   next: boolean;
   previous: boolean;
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService,private toastr: ToastrService) {
     this.page = 1;
     this.pageSize = 10;
   }
@@ -47,6 +48,9 @@ export class PostListComponent implements OnInit {
         this.previous = result.previous;
       }
     });
+  }
+  showToast(){
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
   pageChange(e){
     this.getPostList(e.page,e.itemsPerPage)

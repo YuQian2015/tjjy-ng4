@@ -13,6 +13,7 @@ import { UserService } from '../../core/service/user.service';
 })
 export class LoginComponent implements OnInit {
   @Output() user = new EventEmitter();
+  @Output() signup = new EventEmitter();
 
   isLogin: boolean;
   UserInfo =  new UserInfoModule('', '','','');
@@ -48,7 +49,9 @@ export class LoginComponent implements OnInit {
         password: this.UserInfo.password,
       }
     ).subscribe(data => {
-      if (data) console.log(data);
+      if (data) {
+        this.signup.emit(data);
+      }
     });
   }
   changeState(){
