@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule }  from '../shared/shared.module';
 
 
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({

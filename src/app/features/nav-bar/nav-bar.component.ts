@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
+import { UserService } from '../../core/service/user.service';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,7 +18,13 @@ export class NavBarComponent implements OnInit {
   user: object;
   isLogin: boolean = false;
   title = '项目名称';
-  constructor(private router: Router, private modalService: BsModalService, private toastr: ToastrService) { }
+  isLoading:boolean = false;
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private modalService: BsModalService,
+    private toastr: ToastrService
+  ) { }
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -40,13 +48,49 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  signup(data) {
-    if (data.error) {
-      this.toastr.error(data.message, '注册失败！');
-      return 0
+  signin(data){
+    let { email,password } = data;
+    if(email&&password){
+      this.isLoading = true;
+      this.userService.signIn(
+        {
+          email,
+          password
+        }).subscribe(data => {
+          if (data) {
+            this.isLoading = false;
+            console.log(data.data.result);
+            this.getUser(data.data.result)
+            localStorage.setItem("token",data.data.token);
+            this.router.navigate(['/main']);
+          }
+        });
     }
-    this.modalRef.hide();
-    this.toastr.success(data.message, '注册成功！');
+  }
+  signup(data) {
+    this.isLoading = true;
+
+    let {name,email,password,repeat} = data;
+
+    if(!name||!email||!password||password !== repeat){
+      return
+    }
+    //提交注册
+    this.userService.signUp(
+      {
+        name,
+        email,
+        password,
+      }
+    ).subscribe(data => {
+      this.isLoading = false;
+      if (data.error) {
+        this.toastr.error(data.message, '注册失败！');
+        return 0
+      }
+      this.modalRef.hide();
+      this.toastr.success(data.message, '注册成功！');
+    });
   }
   ngOnInit() {
     let token = localStorage.getItem("token");

@@ -12,20 +12,22 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
+const LOADING_SETTING = {
+    animationType: ANIMATION_TYPES.threeBounce,
+    backdropBackgroundColour: 'rgba(0,0,0,0)',
+    backdropBorderRadius: '0px',
+    primaryColour: '#ef388b',
+    secondaryColour: '#4ba1ec',
+    tertiaryColour: '#41e2af'
+}
+
 @NgModule({
   imports: [
     CommonModule,FormsModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
     AngularFontAwesomeModule,
-    LoadingModule.forRoot({
-        animationType: ANIMATION_TYPES.rotatingPlane,
-        backdropBackgroundColour: 'rgba(0,0,0,0.2)',
-        backdropBorderRadius: '0px',
-        primaryColour: '#ffffff',
-        secondaryColour: '#ffffff',
-        tertiaryColour: '#ffffff'
-    }),
+    LoadingModule.forRoot(LOADING_SETTING),
   ],
   declarations: [
     FroalaComponent,
@@ -38,7 +40,7 @@ import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
     AngularFontAwesomeModule,
     AlertModule,CarouselModule,ModalModule,
     ImageManagerComponent,
-    LoadingModule
+    LoadingModule,
   ]
 })
 export class SharedModule { }

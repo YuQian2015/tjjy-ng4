@@ -30,8 +30,8 @@
         <div [hidden]="UserInfo.repeat == UserInfo.password || repeat.pristine"><code>两次密码不一致</code></div>
       </div>
       <a class="btn btn-link pull-right" (click)="changeState()">{{isLogin?'立即注册':'返回登录'}}</a>
-      <button class="btn btn-block btn-danger" (click)="login()" *ngIf="isLogin">登录</button>
-      <button class="btn btn-block btn-primary" (click)="register()" *ngIf="!isLogin">注册</button>
+      <button class="btn btn-block btn-success" (click)="login()" *ngIf="isLogin" [disabled]="!userForm.form.valid">登录</button>
+      <button class="btn btn-block btn-primary" (click)="register()" *ngIf="!isLogin" [disabled]="!userForm.form.valid">注册</button>
     </form>
   </div>
 </div>

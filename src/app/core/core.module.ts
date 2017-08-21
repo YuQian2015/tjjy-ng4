@@ -8,14 +8,14 @@ import { UserService } from './service/user.service';
   imports: [
     CommonModule
   ],
-  providers: [UserService],
+  providers: [],
   declarations: []
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: []
+      providers: [UserService]
     };
   }
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
