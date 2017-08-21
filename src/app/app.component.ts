@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  onResize(event) {
+    console.log(event.target.innerWidth);
+  }
+
   title = '登录';
   config = {
     // wheelSpeed              // Scroll speed for the mousewheel event (Default: 1).
@@ -19,5 +24,11 @@ export class AppComponent {
     // scrollXMarginOffset     // Offset before enabling the X scroller (Default: 0).
     // scrollYMarginOffset     // Offset before enabling the Y scroller (Default: 0).
     // stopPropagationOnClick  // Stop the propagation of click event (Default: true).
+  }
+  constructor() {
+
+  }
+  ngOnInit() {
+
   }
 }

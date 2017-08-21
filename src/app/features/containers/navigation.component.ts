@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navigation',
-  template:`<p>
-    navigation works!
-  </p>`
+  template:`<app-nav-bar></app-nav-bar>`
 })
 export class NavigationComponent implements OnInit {
 

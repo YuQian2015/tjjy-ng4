@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule }  from '../shared/shared.module';
 
 
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavigationComponent } from './containers/navigation.component';
 
 @NgModule({

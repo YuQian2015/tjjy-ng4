@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
-import { UserService } from '../../core/service/user.service';
+import { UserService } from '../../../core/service/user.service';
 
 import { ToastrService } from 'ngx-toastr';
 

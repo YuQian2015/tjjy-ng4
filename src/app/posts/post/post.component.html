@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div *ngIf="layout=='list'" routerLink="/post/{{post._id}}" class="media">
+<div *ngIf="layout=='list'" routerLink="/post/{{post._id}}" class="media" style="margin:10px 0">
   <div class="media-left media-middle">
     <a href="#">
       <img class="media-object avatar" src="{{post.cover?post.cover:'http://localhost:8089/static/images/default.jpg'}}" alt="{{post.title}}">
