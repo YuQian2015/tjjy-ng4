@@ -1,8 +1,8 @@
-/**
-*     登录组件
-*     @output signup
-*     @output signin
-*/
+/*
+*登录组件
+*@output signup
+*@output signin
+**/
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
