@@ -7,20 +7,20 @@ import { RouterModule } from '@angular/router';
 import { SharedModule }  from '../shared/shared.module';
 
 
-import { LoginComponent } from './components/login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavigationComponent } from './containers/navigation.component';
 
 @NgModule({
   imports: [
     CommonModule,FormsModule,HttpModule,SharedModule,RouterModule,
   ],
   declarations: [
-    LoginComponent,
-    NavBarComponent
+    NavBarComponent,
+    NavigationComponent
   ],
   exports: [
-    LoginComponent,
-    NavBarComponent
+    NavBarComponent,
+    NavigationComponent
   ]
 })
 export class FeaturesModule {

@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FroalaComponent } from './froala/froala.component';
 import { ImageManagerComponent } from './image-manager/image-manager.component';
+import { LoginComponent } from './login/login.component';
 
 // Import Angular plugin.
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -32,6 +33,7 @@ const LOADING_SETTING = {
   declarations: [
     FroalaComponent,
     ImageManagerComponent,
+    LoginComponent,
   ],
   exports:[
     CommonModule,
@@ -40,6 +42,7 @@ const LOADING_SETTING = {
     AngularFontAwesomeModule,
     AlertModule,CarouselModule,ModalModule,
     ImageManagerComponent,
+    LoginComponent,
     LoadingModule,
   ]
 })
