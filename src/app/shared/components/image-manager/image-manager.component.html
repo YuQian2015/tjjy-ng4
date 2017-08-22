@@ -1,37 +1,5 @@
 <div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <img src="..." alt="...">
-    </a>
+  <div *ngFor="let image of images" class="col-xs-4 col-md-2">
+    <app-image-viewer [image]="image"></app-image-viewer>
   </div>
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
-        <img src="..." alt="...">
-      </a>
-    </div>
-      <div class="col-xs-6 col-md-3">
-        <a href="#" class="thumbnail">
-          <img src="..." alt="...">
-        </a>
-      </div>
-        <div class="col-xs-6 col-md-3">
-          <a href="#" class="thumbnail">
-            <img src="..." alt="...">
-          </a>
-        </div>
-          <div class="col-xs-6 col-md-3">
-            <a href="#" class="thumbnail">
-              <img src="..." alt="...">
-            </a>
-          </div>
-            <div class="col-xs-6 col-md-3">
-              <a href="#" class="thumbnail">
-                <img src="..." alt="...">
-              </a>
-            </div>
-              <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                  <img src="..." alt="...">
-                </a>
-              </div>
 </div>

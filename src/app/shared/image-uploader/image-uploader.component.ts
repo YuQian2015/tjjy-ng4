@@ -20,6 +20,7 @@ export class ImageUploaderComponent implements OnInit {
   uploadError;
   currentStatus: number;
   uploadFieldName = 'files';//字段名
+  images:object;
 
 
   readonly STATUS_INITIAL = 0;
@@ -97,6 +98,7 @@ export class ImageUploaderComponent implements OnInit {
       .delay(1500) // DEV ONLY: delay 1.5s to see the changes
       .subscribe(images => {
         console.log(images)
+        this.images = images;
       }, err => {
         console.log(err)
       })

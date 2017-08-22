@@ -53,7 +53,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <ngx-loading [show]="true" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
-    <app-image-manager></app-image-manager>
+    <ngx-loading [show]="false" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    <app-image-manager [images]="images"></app-image-manager>
   </div>
 </template>
