@@ -1,4 +1,5 @@
 <perfect-scrollbar class="container" style="width:100%;height:100%;padding:0;" [config]="config">
   <app-navigation></app-navigation>
+  <ng-progress></ng-progress>
   <div (window:resize)="onResize($event)" class="content"><router-outlet></router-outlet></div>
 </perfect-scrollbar>
