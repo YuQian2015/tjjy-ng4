@@ -10,8 +10,8 @@ import { AppRoutingModule }  from './app-routing.module';
 
 import { ToastrModule } from 'ngx-toastr';
 
-import { NgProgressModule } from 'ngx-progressbar';
-import { NgProgressBrowserXhr } from 'ngx-progressbar';
+import { BrowserXhr, HttpModule } from '@angular/http';
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule }  from './shared/shared.module';
@@ -39,9 +39,11 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule, // required animations module
     CoreModule.forRoot(),
     ToastrModule.forRoot({ timeOut: 3000,closeButton:true,positionClass: 'toast-top-center' }), // ToastrModule added
+
+    HttpModule,
     NgProgressModule
   ],
-  providers: [],
+  providers: [{ provide: BrowserXhr, useClass: NgProgressBrowserXhr }],
   bootstrap: [AppComponent]//启动根组件到index.html
 })
 export class AppModule { }

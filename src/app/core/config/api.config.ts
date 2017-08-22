@@ -10,6 +10,7 @@ export const api = {
   signup : "/user/signup",
 
   uploadImage : "/file/uploadImage",
+  imageManager : "/file/imageManager",
 
   getPostList : "/post/getPostList",
   addPost : "/protect/addPost",

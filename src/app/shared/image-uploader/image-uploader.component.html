@@ -1,8 +1,11 @@
 <div>
-
-
-  <div (click)="addImage()" *ngIf="currentStatus === STATUS_MENU">
-    <fa name="plus-circle"></fa>
+  <div class="btn-group btn-group-xs">
+    <button type="button" class="btn btn-default" (click)="addImage()" *ngIf="currentStatus === STATUS_MENU">
+      <fa name="plus-circle"></fa> 添加
+    </button>
+    <button type="button" (click)="view(template)" class="btn btn-default">
+      <fa name="folder"></fa> 浏览
+    </button>
   </div>
   <!--UPLOAD-->
   <form #f="ngForm" enctype="multipart/form-data" novalidate *ngIf="currentStatus === STATUS_INITIAL || currentStatus === STATUS_SAVING">
@@ -40,3 +43,17 @@
     <pre>{{ uploadError | json }}</pre>
   </div>
 </div>
+
+
+<template #template class=" modal-sm">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">图片管理</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ngx-loading [show]="true" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    <app-image-manager></app-image-manager>
+  </div>
+</template>

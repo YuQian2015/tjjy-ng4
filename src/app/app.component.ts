@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   onResize(event) {
-    console.log(event.target.innerWidth);
+    // console.log(event.target.innerWidth);
   }
 
   title = '登录';

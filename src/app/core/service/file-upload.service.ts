@@ -12,4 +12,9 @@ export class FileUploadService {
     return this.http.post(url.baseUrl+api.uploadImage, formData)
       .map((res: Response) => res.json())
   }
+
+  manager() {
+    return this.http.post(url.baseUrl+api.imageManager,{})
+      .map((res: Response) => res.json())
+  }
 }

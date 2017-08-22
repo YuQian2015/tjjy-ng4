@@ -1,14 +1,20 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 
 import { FileUploadService } from '../../core/service/file-upload.service';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+
 @Component({
-  selector: 'app-image-manager',
-  templateUrl: './image-manager.component.html',
-  styleUrls: ['./image-manager.component.css'],
-  providers: [FileUploadService],
+  selector: 'app-image-uploader',
+  templateUrl: './image-uploader.component.html',
+  styleUrls: ['./image-uploader.component.css']
 })
-export class ImageManagerComponent implements OnInit {
+export class ImageUploaderComponent implements OnInit {
   @Output() manage = new EventEmitter();
+
+
+  public modalRef: BsModalRef;
 
   uploadedFiles = [];
   uploadError;
@@ -28,7 +34,10 @@ export class ImageManagerComponent implements OnInit {
 
 
 
-  constructor(private _svc: FileUploadService) {
+  constructor(
+    private modalService: BsModalService,
+    private _svc: FileUploadService
+  ) {
     this.reset(); // set initial state
     this.currentStatus = 4;
   }
@@ -78,6 +87,21 @@ export class ImageManagerComponent implements OnInit {
         this.currentStatus = this.STATUS_FAILED;
       })
   }
+  view(template: TemplateRef<any>){
+
+    this.modalRef = this.modalService.show(template, {
+      class: 'modal-lg'
+    });
+    this._svc.manager()
+      .take(1)
+      .delay(1500) // DEV ONLY: delay 1.5s to see the changes
+      .subscribe(images => {
+        console.log(images)
+      }, err => {
+        console.log(err)
+      })
+  }
   ngOnInit() {
   }
+
 }

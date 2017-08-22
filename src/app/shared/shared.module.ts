@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FroalaComponent } from './froala/froala.component';
-import { ImageManagerComponent } from './image-manager/image-manager.component';
-import { LoginComponent } from './login/login.component';
-
 // Import Angular plugin.
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+
+import { FroalaComponent } from './froala/froala.component';
+import { ImageManagerComponent } from './components/image-manager/image-manager.component';
+import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+import { LoginComponent } from './login/login.component';
 
 const LOADING_SETTING = {
     animationType: ANIMATION_TYPES.threeBounce,
@@ -34,6 +36,8 @@ const LOADING_SETTING = {
     FroalaComponent,
     ImageManagerComponent,
     LoginComponent,
+    ImageViewerComponent,
+    ImageUploaderComponent,
   ],
   exports:[
     CommonModule,
@@ -43,6 +47,8 @@ const LOADING_SETTING = {
     AlertModule,CarouselModule,ModalModule,
     ImageManagerComponent,
     LoginComponent,
+    ImageViewerComponent,
+    ImageUploaderComponent,
     LoadingModule,
   ]
 })
