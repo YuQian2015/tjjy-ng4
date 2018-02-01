@@ -4,6 +4,9 @@
       <fa name="plus-circle"></fa> 添加
     </button>
     <button type="button" (click)="view(template)" class="btn btn-default">
+      <fa name="tag"></fa> 类型
+    </button>
+    <button type="button" (click)="view(template)" class="btn btn-default">
       <fa name="folder"></fa> 浏览
     </button>
   </div>
@@ -47,7 +50,7 @@
 
 <template #template class=" modal-sm">
   <div class="modal-header">
-    <h4 class="modal-title pull-left">图片管理</h4>
+    <h4 class="modal-title pull-left">图片管理 <span>类型</span> </h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>

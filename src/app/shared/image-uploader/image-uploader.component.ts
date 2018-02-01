@@ -19,8 +19,8 @@ export class ImageUploaderComponent implements OnInit {
   uploadedFiles = [];
   uploadError;
   currentStatus: number;
-  uploadFieldName = 'files';//字段名
-  images:object;
+  uploadFieldName = 'files'; // 字段名
+  images: object;
 
 
   readonly STATUS_INITIAL = 0;
@@ -45,21 +45,40 @@ export class ImageUploaderComponent implements OnInit {
 
 
 
-
+  /**
+   * 重置上传状态
+   *
+   * @memberof ImageUploaderComponent
+   */
   reset() {
     this.currentStatus = this.STATUS_INITIAL;
     this.uploadedFiles = [];
     this.uploadError = null;
   }
-  addImage(){
+  /**
+   * 点击添加图片
+   *
+   * @memberof ImageUploaderComponent
+   */
+  addImage() {
     this.currentStatus = this.STATUS_INITIAL;
   }
 
+  /**
+   * 检测文件变化创建上传数据
+   *
+   * @param {string} fieldName
+   * @param {FileList} fileList
+   * @returns
+   * @memberof ImageUploaderComponent
+   */
   filesChange(fieldName: string, fileList: FileList) {
     // handle file changes
     const formData = new FormData();
 
-    if (!fileList.length) return;
+    if (!fileList.length) {
+      return;
+    }
 
     // append the files to FormData
     Array
@@ -71,15 +90,24 @@ export class ImageUploaderComponent implements OnInit {
     // save it
     this.save(formData);
   }
+
+  /**
+   * 保存图片
+   *
+   * @param {FormData} formData
+   * @memberof ImageUploaderComponent
+   */
   save(formData: FormData) {
     // upload data to the server
     this.currentStatus = this.STATUS_SAVING;
     this._svc.upload(formData)
       .take(1)
       .delay(1500) // DEV ONLY: delay 1.5s to see the changes
-      .subscribe(x => {
-        console.log(x)
-        this.uploadedFiles = [].concat(x);
+      .subscribe(data => {
+        console.log(data)
+        data.data.result.forEach(file => {
+          this.uploadedFiles = this.uploadedFiles.concat(file);
+        });
         this.currentStatus = this.STATUS_SUCCESS;
         this.manage.emit(this.uploadedFiles);
       }, err => {
@@ -88,7 +116,13 @@ export class ImageUploaderComponent implements OnInit {
         this.currentStatus = this.STATUS_FAILED;
       })
   }
-  view(template: TemplateRef<any>){
+  /**
+   * 查看图片列表
+   *
+   * @param {TemplateRef<any>} template
+   * @memberof ImageUploaderComponent
+   */
+  view(template: TemplateRef<any>) {
 
     this.modalRef = this.modalService.show(template, {
       class: 'modal-lg'
