@@ -12,6 +12,8 @@ export const api = {
   uploadImage : "/file/uploadImage",
   imageManager : "/file/imageManager",
 
+  addImageTags : "/protect/addImageTags",
+
   getPostList : "/post/getPostList",
   addPost : "/protect/addPost",
   getPost : "/post/getPost"

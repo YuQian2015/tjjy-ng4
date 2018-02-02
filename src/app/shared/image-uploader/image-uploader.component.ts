@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 
-import { FileUploadService } from '../../core/service/file-upload.service';
+import { FileUploadService, TagsArgs } from '../../core/service/file-upload.service';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
@@ -13,6 +14,19 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 export class ImageUploaderComponent implements OnInit {
   @Output() manage = new EventEmitter();
 
+  choice: TagsArgs;
+
+  items: TagsArgs[] = [{
+    tag: 0,
+    tagName: "123456"
+  },{
+    tag: 1,
+    tagName: "123456"
+  },{
+    tag: 2,
+    tagName: "123456"
+  },
+    ];
 
   public modalRef: BsModalRef;
 
@@ -37,12 +51,36 @@ export class ImageUploaderComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private _svc: FileUploadService
+    private fileUploadService: FileUploadService
   ) {
     this.reset(); // set initial state
     this.currentStatus = 4;
   }
 
+
+  onHidden(): void {
+    console.log('Dropdown is hidden');
+  }
+  onShown(): void {
+    console.log('Dropdown is shown');
+  }
+  isOpenChange(): void {
+    console.log('Dropdown state is changed');
+  }
+  chose(choice: TagsArgs) {
+    this.choice = choice;
+  }
+
+  setImageTag(param: TagsArgs) {
+    this.fileUploadService.addImageTags(param)
+      .take(1)
+      .delay(1500) // DEV ONLY: delay 1.5s to see the changes
+      .subscribe(images => {
+        console.log(images)
+      }, err => {
+        console.log(err)
+      })
+  }
 
 
   /**
@@ -100,7 +138,7 @@ export class ImageUploaderComponent implements OnInit {
   save(formData: FormData) {
     // upload data to the server
     this.currentStatus = this.STATUS_SAVING;
-    this._svc.upload(formData)
+    this.fileUploadService.upload(formData)
       .take(1)
       .delay(1500) // DEV ONLY: delay 1.5s to see the changes
       .subscribe(data => {
@@ -109,6 +147,10 @@ export class ImageUploaderComponent implements OnInit {
           this.uploadedFiles = this.uploadedFiles.concat(file);
         });
         this.currentStatus = this.STATUS_SUCCESS;
+        this.setImageTag({
+          tag: 0,
+          tagName: "123456"
+        });
         this.manage.emit(this.uploadedFiles);
       }, err => {
         console.log(err)
@@ -127,7 +169,7 @@ export class ImageUploaderComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {
       class: 'modal-lg'
     });
-    this._svc.manager()
+    this.fileUploadService.manager()
       .take(1)
       .delay(1500) // DEV ONLY: delay 1.5s to see the changes
       .subscribe(images => {

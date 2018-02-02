@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Import Angular plugin.
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
-import { AlertModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
+import { AlertModule, CarouselModule, ModalModule, BsDropdownModule } from 'ngx-bootstrap';
 import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
 
 import { FroalaComponent } from './froala/froala.component';
@@ -28,7 +28,7 @@ const LOADING_SETTING = {
   imports: [
     CommonModule,FormsModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
-    AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),
+    AlertModule.forRoot(),CarouselModule.forRoot(),ModalModule.forRoot(),BsDropdownModule.forRoot(),
     AngularFontAwesomeModule,
     LoadingModule.forRoot(LOADING_SETTING),
   ],
@@ -44,7 +44,7 @@ const LOADING_SETTING = {
     FormsModule,
     FroalaComponent,
     AngularFontAwesomeModule,
-    AlertModule,CarouselModule,ModalModule,
+    AlertModule,CarouselModule,ModalModule,BsDropdownModule,
     ImageManagerComponent,
     LoginComponent,
     ImageViewerComponent,

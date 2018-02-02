@@ -3,9 +3,14 @@
     <button type="button" class="btn btn-default" (click)="addImage()" *ngIf="currentStatus === STATUS_MENU">
       <fa name="plus-circle"></fa> 添加
     </button>
-    <button type="button" (click)="view(template)" class="btn btn-default">
-      <fa name="tag"></fa> 类型
-    </button>
+    <span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()" class="btn btn-default">
+      <span dropdownToggle (click)="false"><fa name="tag"></fa> {{choice?choice.tagName:"类型"}}</span>
+        <ul *dropdownMenu class="dropdown-menu">
+          <li *ngFor="let choice of items" (click)="chose(choice)">
+            <a class="dropdown-item">{{choice.tagName}}</a>
+          </li>
+        </ul>
+    </span>
     <button type="button" (click)="view(template)" class="btn btn-default">
       <fa name="folder"></fa> 浏览
     </button>
