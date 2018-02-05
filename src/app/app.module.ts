@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { WebStorageModule } from 'ngx-store';
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -33,6 +35,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    WebStorageModule,
     SharedModule,
     FeaturesModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG),

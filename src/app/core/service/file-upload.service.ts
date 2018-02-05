@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { url,api } from '../config/api.config';
+import { ApiService } from '../service/api.service';
 
 export interface TagsArgs {
   tag: number; // 标签编号
@@ -12,7 +13,7 @@ export interface TagsArgs {
 @Injectable()
 export class FileUploadService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private apiService : ApiService) { }
 
   upload(formData) {
     return this.http.post(url.baseUrl+api.uploadImage, formData)
@@ -24,9 +25,9 @@ export class FileUploadService {
       .map((res: Response) => res.json())
   }
 
-    addImageTags( params: TagsArgs) {
-      return this.http.post(url.baseUrl+api.addImageTags,params)
-        .map((res: Response) => res.json())
-    }
+  // 添加图片标签
+  addImageTags(params: TagsArgs) {
+    return this.apiService.post(`${url.baseUrl}${api.addImageTags}`, params)
+  }
 
 }

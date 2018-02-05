@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // service
 import { UserService } from './service/user.service';
+import { ApiService } from './service/api.service';
 import { FileUploadService } from './service/file-upload.service';
 
 @NgModule({
@@ -16,7 +17,7 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [UserService, FileUploadService]
+      providers: [UserService, FileUploadService, ApiService]
     };
   }
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LocalStorage } from 'ngx-store';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
@@ -14,9 +16,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+    // it will be stored under ${prefix}token name
+    @LocalStorage() token: string;
+    @LocalStorage() user: object;
+
   public modalRef: BsModalRef;
-  user: object;
-  isLogin: boolean = false;
+  isLogin: boolean = !!this.token;
   title = '项目名称';
   isLoading:boolean = false;
   constructor(
@@ -26,21 +32,10 @@ export class NavBarComponent implements OnInit {
     private toastr: ToastrService
   ) { }
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    this.token = undefined;
+    this.user = undefined;
     this.isLogin = false;
-    this.user = {};
     // this.router.navigate(['/login']);
-  }
-  getUser(user) {
-    this.user = user;
-    localStorage.setItem("user", JSON.stringify(user));
-    let token = localStorage.getItem("token");
-    this.isLogin = true;
-    if (token) {
-      this.isLogin = true;
-    }
-    this.modalRef.hide();
   }
   public openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {
@@ -60,8 +55,10 @@ export class NavBarComponent implements OnInit {
           if (data) {
             this.isLoading = false;
             console.log(data.data.result);
-            this.getUser(data.data.result)
-            localStorage.setItem("token",data.data.token);
+            this.token = data.data.token;
+              this.user = data.data.result;
+              this.isLogin = true;
+              this.modalRef.hide();
             this.router.navigate(['/main']);
           }
         });
