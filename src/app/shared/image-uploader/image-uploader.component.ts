@@ -6,27 +6,19 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
+import { LocalStorage } from 'ngx-store';
+
 @Component({
   selector: 'app-image-uploader',
   templateUrl: './image-uploader.component.html',
   styleUrls: ['./image-uploader.component.css']
 })
 export class ImageUploaderComponent implements OnInit {
+
+  @LocalStorage() imageTags: TagsArgs[] = [];
   @Output() manage = new EventEmitter();
 
   choice: TagsArgs;
-
-  items: TagsArgs[] = [{
-    tag: 0,
-    tagName: "123456"
-  },{
-    tag: 1,
-    tagName: "123456"
-  },{
-    tag: 2,
-    tagName: "123456"
-  },
-    ];
 
   public modalRef: BsModalRef;
 
@@ -63,6 +55,18 @@ export class ImageUploaderComponent implements OnInit {
   }
   onShown(): void {
     console.log('Dropdown is shown');
+        this.fileUploadService.getImageTags()
+          .subscribe(tags => {
+            this.imageTags = [];
+            tags.data.result.forEach(tag => {
+              this.imageTags.push({
+                  tag: tag.tag,
+                  tagName: tag.tagName
+              })
+            });
+          }, err => {
+            console.log(err)
+          })
   }
   isOpenChange(): void {
     console.log('Dropdown state is changed');
@@ -74,7 +78,7 @@ export class ImageUploaderComponent implements OnInit {
   setImageTag(param: TagsArgs) {
     this.fileUploadService.addImageTags(param)
       .take(1)
-      .delay(1500) // DEV ONLY: delay 1.5s to see the changes
+      // .delay(1500) // DEV ONLY: delay 1.5s to see the changes
       .subscribe(images => {
         console.log(images)
       }, err => {

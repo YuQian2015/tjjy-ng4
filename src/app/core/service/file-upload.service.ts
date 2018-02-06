@@ -26,6 +26,11 @@ export class FileUploadService {
     return this.apiService.post(`${url.baseUrl}${api.imageManager}`, {})
   }
 
+  // 获取图片标签
+  getImageTags() {
+    return this.apiService.get(`${url.baseUrl}${api.getImageTags}`)
+  }
+
   // 添加图片标签
   addImageTags(params: TagsArgs) {
     return this.apiService.post(`${url.baseUrl}${api.addImageTags}`, params)

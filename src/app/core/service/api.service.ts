@@ -27,12 +27,28 @@ export class ApiService {
     headers.append('Authorization', "this.token");
   }
 
-  get(url) {
-    let headers = new Headers();
-    this.createHeader(headers);
-    return this.http.get(url, {
-      headers: headers
-    });
+  // get(url) {
+  //   let headers = new Headers();
+  //   this.createHeader(headers);
+  //   return this.http.get(url, {
+  //     headers: headers
+  //   });
+  // }
+  // get
+  get(url, data?): Observable<any>{
+    let token = this.localStorageService.get("token");
+    let bodyString = JSON.stringify(data); // Stringify payload
+    let headers = new Headers({ 'Content-Type': 'application/json; charset=utf-8' }); // ... Set content type to JSON
+    if(token) {
+      headers.append('x-access-token', token);
+    }
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+    return this.http.get(url, options)
+      // we use the map operator to take the response data, convert it to JSON,
+      // and then reutrn it to any subscribers that are waiting for the data to resolve.
+      .map((res: Response) => res.json()) // 调用 Response 对象的 json() 方法，把响应体转成 JSON 对象
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
 
 
