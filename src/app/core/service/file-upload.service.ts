@@ -21,8 +21,9 @@ export class FileUploadService {
   }
 
   manager() {
-    return this.http.post(url.baseUrl+api.imageManager,{})
-      .map((res: Response) => res.json())
+    // return this.http.post(url.baseUrl+api.imageManager,{})
+    //   .map((res: Response) => res.json())
+    return this.apiService.post(`${url.baseUrl}${api.imageManager}`, {})
   }
 
   // 添加图片标签

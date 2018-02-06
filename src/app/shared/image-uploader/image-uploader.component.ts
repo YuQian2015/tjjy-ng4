@@ -112,7 +112,7 @@ export class ImageUploaderComponent implements OnInit {
    */
   filesChange(fieldName: string, fileList: FileList) {
     // handle file changes
-    const formData = new FormData();
+    let formData = new FormData();
 
     if (!fileList.length) {
       return;
@@ -125,6 +125,8 @@ export class ImageUploaderComponent implements OnInit {
         formData.append(fieldName, fileList[x], fileList[x].name);
       });
 
+    formData.append('tag', "0");
+    formData.append('tagName', "123456");
     // save it
     this.save(formData);
   }
