@@ -16,17 +16,23 @@ import { LocalStorage } from 'ngx-store';
 export class ImageUploaderComponent implements OnInit {
 
   @LocalStorage() imageTags: TagsArgs[] = [];
-  @Output() manage = new EventEmitter();
+  @Output() selectImage = new EventEmitter();
 
-  choice: TagsArgs;
+  choice: TagsArgs = {
+    tag: 0,
+    tagName: "默认"
+  };
 
   public modalRef: BsModalRef;
+  public modalRef2: BsModalRef;
 
   uploadedFiles = [];
   uploadError;
   currentStatus: number;
   uploadFieldName = 'files'; // 字段名
-  images: object;
+  images: object; // 图片列表
+  image: object; // 当前查看的图片
+  loadImages : boolean;
 
 
   readonly STATUS_INITIAL = 0;
@@ -129,8 +135,8 @@ export class ImageUploaderComponent implements OnInit {
         formData.append(fieldName, fileList[x], fileList[x].name);
       });
 
-    formData.append('tag', "0");
-    formData.append('tagName', "123456");
+    formData.append('tag', this.choice.tag.toString());
+    formData.append('tagName', this.choice.tagName);
     // save it
     this.save(formData);
   }
@@ -157,7 +163,7 @@ export class ImageUploaderComponent implements OnInit {
           tag: 0,
           tagName: "123456"
         });
-        this.manage.emit(this.uploadedFiles);
+        this.selectImage.emit(this.uploadedFiles[0]);
       }, err => {
         console.log(err)
         this.uploadError = err;
@@ -175,15 +181,31 @@ export class ImageUploaderComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {
       class: 'modal-lg'
     });
-    this.fileUploadService.manager()
+    this.loadImages = true;
+    this.fileUploadService.view()
       .take(1)
-      .delay(1500) // DEV ONLY: delay 1.5s to see the changes
+      // .delay(1500) // DEV ONLY: delay 1.5s to see the changes
       .subscribe(images => {
+        this.loadImages = false;
         console.log(images)
         this.images = images;
       }, err => {
+        this.loadImages = false;
         console.log(err)
       })
+  }
+
+
+  viewIamge(image, template: TemplateRef<any>) {
+    console.log(image)
+    this.image = image;
+    this.modalRef2 = this.modalService.show(template, { class: 'second' });
+  }
+
+  select(image) {
+    this.selectImage.emit(image);
+    this.modalRef.hide();
+    this.modalRef2.hide();
   }
   ngOnInit() {
   }

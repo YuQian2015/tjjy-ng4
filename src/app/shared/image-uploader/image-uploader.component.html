@@ -5,11 +5,11 @@
     </button>
     <span dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()" class="btn btn-default">
       <span dropdownToggle (click)="false"><fa name="tag"></fa> {{choice?choice.tagName:"类型"}}</span>
-        <ul *dropdownMenu class="dropdown-menu">
-          <li *ngFor="let choice of imageTags" (click)="chose(choice)">
-            <a class="dropdown-item">{{choice.tagName}}</a>
-          </li>
-        </ul>
+    <ul *dropdownMenu class="dropdown-menu">
+      <li *ngFor="let choice of imageTags" (click)="chose(choice)">
+        <a class="dropdown-item">{{choice.tagName}}</a>
+      </li>
+    </ul>
     </span>
     <button type="button" (click)="view(template)" class="btn btn-default">
       <fa name="folder"></fa> 浏览
@@ -53,15 +53,33 @@
 </div>
 
 
-<template #template class=" modal-sm">
+<ng-template #template class=" modal-sm">
   <div class="modal-header">
-    <h4 class="modal-title pull-left">图片管理 <span>类型</span> </h4>
+    <h4 class="modal-title pull-left">图片管理</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <button type="button" class="btn btn-default btn-xs pull-right">
+      <fa name="tag"></fa> 添加标签
+    </button>
+  </div>
+  <div class="modal-body">
+    <ngx-loading [show]="loadImages" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    <app-image-manager [images]="images" (view)="viewIamge($event, templateNested)"></app-image-manager>
+  </div>
+</ng-template>
+
+<ng-template #templateNested>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{image.name}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <ngx-loading [show]="false" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
-    <app-image-manager [images]="images"></app-image-manager>
+    <img [src]="image.url" [alt]="image.name" [ngStyle]="{'width': '100%'}">
   </div>
-</template>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="select(image)">使用</button>
+  </div>
+</ng-template>

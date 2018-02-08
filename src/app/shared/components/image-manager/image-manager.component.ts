@@ -14,11 +14,15 @@ export class ImageManagerComponent implements OnInit {
 
 
   @Output() manage = new EventEmitter();
+  @Output() view = new EventEmitter();
   @Input() images: object;
   @Input() size: string;
 
   constructor( ) { }
 
+  handleClick(image) {
+    this.view.emit(image);
+  }
   ngOnInit() {
   }
 }

@@ -1,5 +1,5 @@
 <div class="row">
-  <div *ngFor="let image of images" class="col-xs-6 col-sm-4 col-md-2">
+  <div *ngFor="let image of images" class="col-xs-6 col-sm-4 col-md-2" (click)="handleClick(image)">
     <app-image-viewer [image]="image"></app-image-viewer>
   </div>
 </div>

@@ -5,7 +5,7 @@ import { url,api } from '../config/api.config';
 import { ApiService } from '../service/api.service';
 
 export interface TagsArgs {
-  tag: number; // 标签编号
+  tag: number | number; // 标签编号
   tagName: string; //标签名称
 }
 
@@ -24,6 +24,12 @@ export class FileUploadService {
     // return this.http.post(url.baseUrl+api.imageManager,{})
     //   .map((res: Response) => res.json())
     return this.apiService.post(`${url.baseUrl}${api.imageManager}`, {})
+  }
+
+  view() {
+    // return this.http.post(url.baseUrl+api.imageManager,{})
+    //   .map((res: Response) => res.json())
+    return this.apiService.get(`${url.baseUrl}${api.getImages}`, {})
   }
 
   // 获取图片标签
